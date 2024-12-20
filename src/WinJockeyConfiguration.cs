@@ -130,7 +130,7 @@ partial class WinJockeyConfiguration
         var ns = typeof(App).Namespace;
         using var sourceStream = a.GetManifestResourceStream($"{ns}.resources.{resourceName}")
             ?? throw new FileNotFoundException("Embedded resource " + resourceName + " not found.");
-        using var targetStream = File.OpenWrite(targetPath);
+        using var targetStream = File.Open(targetPath, FileMode.Create);
         await sourceStream.CopyToAsync(targetStream);
     }
 
