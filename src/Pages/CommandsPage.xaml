@@ -24,6 +24,7 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock
                     Style="{StaticResource Caption}"
@@ -34,14 +35,21 @@
                     Text="{Binding Path=Action}" />
                 <ui:Button
                     Grid.Column="2"
-                    Margin="12,0,4,0"
+                    Margin="12,0,0,0"
+                    Tag="{Binding}"
+                    Click="ButtonRunCommand_Click">
+                    <ui:SymbolIcon Symbol="Play20" />
+                </ui:Button>
+                <ui:Button
+                    Grid.Column="3"
+                    Margin="4,0,0,0"
                     Tag="{Binding}"
                     Click="ButtonEditCommand_Click">
                     <ui:SymbolIcon Symbol="Edit20" />
                 </ui:Button>
                 <ui:Button
-                    Grid.Column="3"
-                    Margin="0"
+                    Grid.Column="4"
+                    Margin="4,0,0,0"
                     Tag="{Binding}"
                     Click="ButtonDeleteCommand_Click">
                     <ui:SymbolIcon Symbol="Delete20" />

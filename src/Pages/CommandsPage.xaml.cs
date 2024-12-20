@@ -62,6 +62,12 @@ namespace Mastersign.WinJockey.Pages
             ValidateNewName(TextBoxNewCommandName.Text);
         }
 
+        private void ButtonRunCommand_Click(object sender, RoutedEventArgs ea)
+        {
+            var command = (CommandConfiguration)((FrameworkElement)ea.Source).Tag;
+            Runtime.Actions.Trigger(command);
+        }
+
         private void ButtonEditCommand_Click(object sender, RoutedEventArgs ea)
         {
             var command = (CommandConfiguration)((FrameworkElement)ea.Source).Tag;
