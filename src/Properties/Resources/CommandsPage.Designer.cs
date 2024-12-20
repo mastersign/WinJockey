@@ -22,14 +22,14 @@ namespace Mastersign.WinJockey.Properties.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SettingsPage {
+    public class CommandsPage {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SettingsPage() {
+        internal CommandsPage() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Mastersign.WinJockey.Properties.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mastersign.WinJockey.Properties.Resources.SettingsPage", typeof(SettingsPage).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mastersign.WinJockey.Properties.Resources.CommandsPage", typeof(CommandsPage).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,38 +61,56 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Application ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the command {0}? ähnelt.
         /// </summary>
-        public static string Application_Headline {
+        public static string DeleteDialog_Message {
             get {
-                return ResourceManager.GetString("Application_Headline", resourceCulture);
+                return ResourceManager.GetString("DeleteDialog_Message", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Start automatically at logon ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete Command ähnelt.
         /// </summary>
-        public static string Autostart_Caption {
+        public static string DeleteDialog_Title {
             get {
-                return ResourceManager.GetString("Autostart_Caption", resourceCulture);
+                return ResourceManager.GetString("DeleteDialog_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Settings ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Command ähnelt.
         /// </summary>
-        public static string EditSetup_Title {
+        public static string EditCommand_Title {
             get {
-                return ResourceManager.GetString("EditSetup_Title", resourceCulture);
+                return ResourceManager.GetString("EditCommand_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Setup ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Commands ähnelt.
         /// </summary>
-        public static string Setup_Headline {
+        public static string List_Headline {
             get {
-                return ResourceManager.GetString("Setup_Headline", resourceCulture);
+                return ResourceManager.GetString("List_Headline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string NewCommand_Caption {
+            get {
+                return ResourceManager.GetString("NewCommand_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New Command ähnelt.
+        /// </summary>
+        public static string NewCommand_Headline {
+            get {
+                return ResourceManager.GetString("NewCommand_Headline", resourceCulture);
             }
         }
     }

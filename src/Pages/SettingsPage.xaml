@@ -38,6 +38,12 @@
                 Style="{StaticResource Headline}"
                 Text="{x:Static res:SettingsPage.Setup_Headline}" />
             <ui:Button
+                x:Name="ButtonEditSetup"
+                Margin="0,8,0,0"
+                Icon="EditSettings20"
+                Command="local:Commands.EditSetup"
+                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+            <ui:Button
                 x:Name="ButtonSetupForVsCode"
                 Margin="0,8,0,0"
                 Icon="EditSettings20"

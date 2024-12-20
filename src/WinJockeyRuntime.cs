@@ -164,8 +164,8 @@ partial class WinJockeyRuntime : IDisposable
     {
         foreach (var command in MatchMqttMessage(e))
         {
-            Debug(DEBUG_PREFIX_ACTION + command.Source);
-            Actions.Trigger(command);
+            Debug(DEBUG_PREFIX_ACTION + command.CommandName);
+            Dispatcher.BeginInvoke(Actions.Trigger, command);
         }
     }
 

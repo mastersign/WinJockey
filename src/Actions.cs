@@ -18,27 +18,27 @@ public class Actions
     private static void RunAction(
         Action<CommandConfiguration> action,
         Func<CommandConfiguration, string> errorMessageSource,
-        CommandConfiguration pad)
+        CommandConfiguration command)
     {
         try
         {
-            action(pad);
+            action(command);
         }
         catch (Exception ex)
         {
-            MessageBox.Show(
-                errorMessageSource(pad) +
+            System.Windows.MessageBox.Show(
+                errorMessageSource(command) +
                 $"\n\n{ex.GetType().FullName}:\n{ex.Message}",
-                $"WinJockey {pad.Action.ToString().ToUpperInvariant()} Action Error",
+                $"WinJockey {command.Action.ToString().ToUpperInvariant()} Action Error",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
-    private static void RunAction(Action action, Func<string> errorMessageSource)
-        => RunAction(_ => action(), _ => errorMessageSource(), null!);
+    private static void RunAction(Action action, Func<string> errorMessageSource, CommandConfiguration command)
+        => RunAction(_ => action(), _ => errorMessageSource(), command);
 
-    private static void RunAction(Action action, string errorMessage)
-        => RunAction(action, () => errorMessage);
+    private static void RunAction(Action action, string errorMessage, CommandConfiguration command)
+        => RunAction(action, () => errorMessage, command);
 
     public void Trigger(CommandConfiguration command)
     {
@@ -61,27 +61,33 @@ public class Actions
                 break;
             case ActionType.PinWindow:
                 RunAction(WindowManagement.PinCurrentWindow,
-                    "Error pinning current window to all virtual desktops.");
+                    "Error pinning current window to all virtual desktops.",
+                    command);
                 break;
             case ActionType.UnpinWindow:
                 RunAction(WindowManagement.UnpinCurrentWindow,
-                    "Error unpinning current window from all virtual desktops.");
+                    "Error unpinning current window from all virtual desktops.",
+                    command);
                 break;
             case ActionType.MaximizeWindow:
                 RunAction(WindowManagement.MaximizeWindow,
-                    "Error maximizing current window.");
+                    "Error maximizing current window.",
+                    command);
                 break;
             case ActionType.NormalWindow:
                 RunAction(WindowManagement.NormalWindow,
-                    "Error restoring normal state for current window.");
+                    "Error restoring normal state for current window.",
+                    command);
                 break;
             case ActionType.MinimizeWindow:
                 RunAction(WindowManagement.MinimizeWindow,
-                    "Error minimizing current window.");
+                    "Error minimizing current window.",
+                    command);
                 break;
             case ActionType.CloseWindow:
                 RunAction(WindowManagement.CloseWindow,
-                    "Error closing current window.");
+                    "Error closing current window.",
+                    command);
                 break;
             case ActionType.MoveWindow:
                 screen = command.Screen;
@@ -89,7 +95,8 @@ public class Actions
                 {
                     RunAction(
                         () => WindowManagement.MoveCurrentWindowToScreen(screen.Value),
-                        () => $"Error moving current window to screen {screen.Value}.");
+                        () => $"Error moving current window to screen {screen.Value}.",
+                        command);
                 }
                 var winPos = command.WindowPosition;
                 if (winPos != null)
@@ -99,21 +106,25 @@ public class Actions
                             winPos.X / 100.0, winPos.Y / 100.0,
                             winPos.W / 100.0, winPos.H / 100.0),
                         () => $"Error moving current window to " +
-                            $"left={winPos.X}%, top={winPos.Y}%, width={winPos.W}%, height={winPos.H}%.");
+                            $"left={winPos.X}%, top={winPos.Y}%, width={winPos.W}%, height={winPos.H}%.",
+                        command);
                 }
                 switch (command.WindowStyle)
                 {
                     case ProcessWindowStyle.Maximized:
                         RunAction(WindowManagement.MaximizeWindow,
-                            "Error maximizing current window.");
+                            "Error maximizing current window.",
+                            command);
                         break;
                     case ProcessWindowStyle.Normal:
                         RunAction(WindowManagement.NormalWindow,
-                            "Error restoring normal state for current window.");
+                            "Error restoring normal state for current window.",
+                            command);
                         break;
                     case ProcessWindowStyle.Minimized:
                         RunAction(WindowManagement.MinimizeWindow,
-                            "Error minimizing current window.");
+                            "Error minimizing current window.",
+                            command);
                         break;
                 }
                 vDesktop = command.VirtualDesktop;
@@ -125,14 +136,16 @@ public class Actions
                             WindowManagement.MoveCurrentWindowToVirtualDesktop(vDesktop.Value);
                             WindowManagement.SwitchToVirtualDesktop(vDesktop.Value);
                         },
-                        () => $"Error moving current window to virtual desktop {vDesktop.Value}.");
+                        () => $"Error moving current window to virtual desktop {vDesktop.Value}.",
+                        command);
                 }
                 break;
             case ActionType.SwitchVirtualDesktop:
                 vDesktop = command.VirtualDesktop;
                 RunAction(
                     () => WindowManagement.SwitchToVirtualDesktop(vDesktop ?? 0),
-                    () => $"Error switching virtual desktop {command.VirtualDesktop ?? 0}.");
+                    () => $"Error switching virtual desktop {command.VirtualDesktop ?? 0}.",
+                    command);
                 break;
         }
     }

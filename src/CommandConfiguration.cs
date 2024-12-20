@@ -29,4 +29,11 @@ partial class CommandConfiguration
     }
 
     internal string Source { get; set; }
+
+    public string CommandName => System.IO.Path.GetFileNameWithoutExtension(Source ?? "unknown");
+
+    public override string ToString()
+    {
+        return $"{CommandName}: {Action}";
+    }
 }

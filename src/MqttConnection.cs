@@ -12,7 +12,7 @@ public sealed class MqttConnection : IDisposable
     private const string DEBUG_PREFIX_CONNECTED = "✔ ";
     private const string DEBUG_PREFIX_DISCONNECTED = "❌ ";
     private const string DEBUG_PREFIX_SUBSCRIBE = " ⇌ ";
-    private const string DEBUG_PREFIX_INPUT =  " ◀ ";
+    private const string DEBUG_PREFIX_INPUT = " ◀ ";
     private const string DEBUG_PREFIX_OUTPUT = " ▷ ";
 
     private MqttSetup? mqttSetup = null;
@@ -172,7 +172,14 @@ public sealed class MqttConnection : IDisposable
             foreach (var mqttEvent in mqttEvents.GetConsumingEnumerable())
             {
                 if (mqttEvent is null) break;
-                Message?.Invoke(this, mqttEvent);
+                try
+                {
+                    Message?.Invoke(this, mqttEvent);
+                }
+                catch (Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.ToString());
+                }
             }
         }).Start();
     }
@@ -192,7 +199,7 @@ public sealed class MqttConnection : IDisposable
         }
         Debug(DEBUG_PREFIX_OUTPUT + "Hello on " + topic);
         await mqttClient.PublishStringAsync(topic, payload,
-            qualityOfServiceLevel: MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce, 
+            qualityOfServiceLevel: MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce,
             cancellationToken: disposeTokenSource.Token);
     }
 

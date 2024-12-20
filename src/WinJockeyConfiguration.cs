@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Windows.Threading;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using static System.IO.Path;
@@ -14,6 +15,8 @@ partial class WinJockeyConfiguration
     private const string REDIRECT_FILENAME = "redirect.txt";
     private const string SETUP_FILENAME = "setup.yml";
     private const string COMMANDS_DIRNAME = "commands";
+
+    public Dispatcher Dispatcher { get; set; }
 
     private FileSystemWatcher watcher;
 
@@ -73,6 +76,7 @@ partial class WinJockeyConfiguration
 
     public void Synchronize(string path = null)
     {
+        if (Dispatcher == null) return;
         Debug.WriteLine("Synchronize!");
         if (RealPath == null || !Directory.Exists(RealPath))
         {
@@ -140,10 +144,47 @@ partial class WinJockeyConfiguration
         return reader.ReadToEnd();
     }
 
-    private static void DeployTemplate(string name, string targetFilePath)
+    public void DeployTemplate(string name, string targetFilePath)
     {
         var template = ReadTemplate(name);
         File.WriteAllText(targetFilePath, template, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+    }
+
+    public void EditCommandConfiguration(CommandConfiguration command) => RunDefaultEditor(command.Source);
+
+    public void EditSetup() => RunDefaultEditor(Combine(SetupFile));
+
+    public void RunDefaultEditor(string filePath)
+    {
+        var editorCmd = Setup.DefaultEditor?.Exe;
+        var args = Setup.DefaultEditor?.Args;
+        if (!string.IsNullOrWhiteSpace(editorCmd))
+        {
+            editorCmd = StringExpander.ExpandWinJockeyConfigLocation(editorCmd, RealPath);
+            editorCmd = Environment.ExpandEnvironmentVariables(editorCmd);
+            if (!string.IsNullOrWhiteSpace(args))
+            {
+                args = StringExpander.ExpandWinJockeyConfigLocation(args, RealPath);
+                args = Environment.ExpandEnvironmentVariables(args);
+                args = args.Replace("$FILE$", filePath);
+            }
+            else
+            {
+                args = '"' + filePath + '"';
+            }
+        }
+        else
+        {
+            editorCmd = Join(
+                Environment.GetFolderPath(Environment.SpecialFolder.System),
+                "Notepad.exe");
+            args = '"' + filePath + '"';
+        }
+        if (!File.Exists(editorCmd))
+        {
+            throw new DefaultEditorNotFoundException(editorCmd);
+        }
+        Process.Start(new ProcessStartInfo(editorCmd, args));
     }
 
     public async Task SetupVisualStudioCodeSettings()
@@ -191,7 +232,7 @@ partial class WinJockeyConfiguration
 
     private void ResetCommands()
     {
-        Commands.Clear();
+        Dispatcher.Invoke(Commands.Clear);
     }
 
     private void ReadCommands()
@@ -201,16 +242,26 @@ partial class WinJockeyConfiguration
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .Build();
 
-        Commands.Clear();
         if (Directory.Exists(CommandsDir))
         {
+            var commands = new List<CommandConfiguration>();
             foreach (var commandFile in Directory.GetFiles(CommandsDir, "*.yml"))
             {
                 var command = deserializer.Deserialize<CommandConfiguration>(
                     RobustReadAllText(commandFile, Encoding.UTF8)) ?? new();
-                command.Source = System.IO.Path.GetFileNameWithoutExtension(commandFile);
-                Commands.Add(command);
+                command.Source = commandFile;
+                commands.Add(command);
             }
+            commands.Sort((a, b) => a.CommandName.CompareTo(b.CommandName));
+            Dispatcher.Invoke(() =>
+            {
+                Commands.Clear();
+                foreach (var command in commands) Commands.Add(command);
+            });
+        }
+        else
+        {
+            ResetCommands();
         }
     }
 

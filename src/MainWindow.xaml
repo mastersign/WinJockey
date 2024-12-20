@@ -24,6 +24,9 @@
         <CommandBinding Command="local:Commands.DisableAutostart"
                         CanExecute="CommandDisableAutostartCanExecute"
                         Executed="CommandDisableAutostartExecuted" />
+        <CommandBinding Command="local:Commands.EditSetup"
+                        CanExecute="CommandEditSetupExecute"
+                        Executed="CommandEditSetupExecuted" />
         <CommandBinding Command="local:Commands.SetupForVsCode"
                         CanExecute="CommandSetupForVsCodeExecute"
                         Executed="CommandSetupForVsCodeExecuted" />
@@ -79,6 +82,12 @@
                                        TargetPageTag="home" TargetPageType="{x:Type pages:HomePage}">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Home20" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="{x:Static res:Common.Page_Commands_Title}"
+                                       TargetPageTag="commands" TargetPageType="{x:Type pages:CommandsPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Flash20" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
             </ui:NavigationView.MenuItems>

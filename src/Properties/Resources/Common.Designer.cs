@@ -79,6 +79,15 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Settings ähnelt.
+        /// </summary>
+        public static string Command_EditSetup {
+            get {
+                return ResourceManager.GetString("Command_EditSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Enable Autostart ähnelt.
         /// </summary>
         public static string Command_EnableAutostart {
@@ -97,11 +106,29 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Could not find the executable of the default editor. ähnelt.
+        /// </summary>
+        public static string EditorNotFound_Message {
+            get {
+                return ResourceManager.GetString("EditorNotFound_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
         /// </summary>
         public static string Page_About_Title {
             get {
                 return ResourceManager.GetString("Page_About_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Commands ähnelt.
+        /// </summary>
+        public static string Page_Commands_Title {
+            get {
+                return ResourceManager.GetString("Page_Commands_Title", resourceCulture);
             }
         }
         

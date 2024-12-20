@@ -10,7 +10,7 @@ namespace WindowsDesktop
 		{
 			if (!VirtualDesktop.IsSupported)
 			{
-				throw new NotSupportedException("Need to include the app manifest in your project so as to target Windows 10. And, run without debugging.");
+				throw new NotSupportedException("Need to include the app manifest in your project so as to target Windows 10, call from STA thread, and probably run without debugging.");
 			}
 		}
 

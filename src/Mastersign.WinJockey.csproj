@@ -15,7 +15,7 @@
     <WebPage>https://www.mastersign.de</WebPage>
 
     <BaseOutputPath>..\bin</BaseOutputPath>
-    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -116,6 +116,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>HomePage.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Resources\CommandsPage.Designer.cs">
+      <DependentUpon>CommandsPage.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Properties\Resources\SettingsPage.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -140,6 +145,10 @@
     <EmbeddedResource Update="Properties\Resources\Common.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources\CommandsPage.resx">
+      <LastGenOutput>CommandsPage.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources\SettingsPage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

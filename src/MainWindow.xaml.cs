@@ -96,6 +96,29 @@ namespace Mastersign.WinJockey
             AutostartManager.DisableAutostart();
             CurrentApp.Runtime.Config.Autostart = false;
         }
+        private void CommandEditSetupExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = CurrentApp?.Runtime?.Config != null;
+        }
+
+        private void CommandEditSetupExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                CurrentApp.Runtime.Config.EditSetup();
+            }
+            catch (DefaultEditorNotFoundException exc)
+            {
+                System.Windows.MessageBox.Show(
+                    Properties.Resources.Common.EditorNotFound_Message
+                    + Environment.NewLine + Environment.NewLine
+                    + exc.EditorExecutable,
+                    Properties.Resources.CommandsPage.EditCommand_Title,
+                    System.Windows.MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+        }
+
         private void CommandSetupForVsCodeExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CurrentApp?.Runtime?.Config != null;
