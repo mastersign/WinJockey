@@ -54,7 +54,6 @@
 
       <!-- MQTT Binding -->
       <Property name="MqttTopic" />
-      <Property name="NoMqttTopicPrefix" type="bool" />
       
       <!-- Command -->
       <Property name="Action" type="ActionType" />

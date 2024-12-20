@@ -588,38 +588,6 @@ namespace Mastersign.WinJockey
         
         #endregion
         
-        #region Property NoMqttTopicPrefix
-        
-        private bool _noMqttTopicPrefix;
-        
-        public event EventHandler NoMqttTopicPrefixChanged;
-        
-        protected virtual void OnNoMqttTopicPrefixChanged()
-        {
-            EventHandler handler = NoMqttTopicPrefixChanged;
-            if (!ReferenceEquals(handler, null))
-            {
-                handler(this, EventArgs.Empty);
-            }
-            this.OnPropertyChanged(@"NoMqttTopicPrefix");
-        }
-        
-        public virtual bool NoMqttTopicPrefix
-        {
-            get { return _noMqttTopicPrefix; }
-            set
-            {
-                if ((value == _noMqttTopicPrefix))
-                {
-                    return;
-                }
-                _noMqttTopicPrefix = value;
-                this.OnNoMqttTopicPrefixChanged();
-            }
-        }
-        
-        #endregion
-        
         #region Property Action
         
         private ActionType _action;

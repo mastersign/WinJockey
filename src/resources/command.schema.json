@@ -37,10 +37,6 @@
             "description": "Sets the MQTT topic to subscribe to",
             "type": "string"
         },
-        "noMqttTopicPrefix": {
-            "description": "Suppresses prepending the global topic prefix",
-            "type": "boolean"
-        },
         "action": {
             "description": "Configures the action of the command",
             "type": "string",
