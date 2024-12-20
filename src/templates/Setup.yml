@@ -1,0 +1,36 @@
+mqttServer:
+    host: '127.0.0.1:1883'
+    # The base MQTT topic is prepended to the topics of the commands.
+    # Environment variables are substituted.
+    baseTopic: WinJockey/%COMPUTERNAME%/
+
+# The default editor is used when editing command configuration files.
+# The placeholder $FILE$ is replaced by the absolute path to the text file.
+# The placeholder $MBC$ is replaced by the absolute path of the WinJockey config directory.
+defaultEditor:
+  exe: '%SystemRoot%\system32\notepad.exe'
+  args: "$FILE$"
+  # exe: '%ProgramFiles%\Visual Studio Code\Code.exe'
+  # args: --profile YAML "$WJC$" "$FILE$"
+
+# The default browser is used when opening a URL without setting the Browser property.
+# The placeholder $URL$ in the browser args is replaced by the URL.
+defaultBrowser:
+  exe: '%ProgramFiles%\Mozilla Firefox\firefox.exe'
+  args: $URL$
+
+# Alternative browsers for opening a URL are selected
+# by using the 'Browser' property in a command configuration.
+browsers:
+  NewWindow:
+    exe: '%ProgramFiles%\Mozilla Firefox\firefox.exe'
+    args: -new-window $URL$
+  Chrome:
+    exe: '%ProgramFiles%\Google\Chrome\Application\chrome.exe'
+    args: $URL$
+  WebApp:
+    exe: '%ProgramFiles%\Google\Chrome\Application\chrome.exe'
+    args: --app=$URL$
+  Kiosk:
+    exe: '%ProgramFiles%\Mozilla Firefox\firefox.exe'
+    args: --new-window --kiosk $URL$

@@ -1,0 +1,7 @@
+{
+  "yaml.schemas": {
+    "./.vscode/schemas/command.schema.json": [
+      "commands/*.yml"
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://WinJockey.mastersign.de/command.schema.json",
+    
+    "title": "WinJockey Command",
+    "description": "The definition for a WinJockey Command",
+
+    "$defs": {
+        "CliCommand": {
+            "description": "The name or path of an executable.\nVariables in CMD syntax, like %AppData% are expanded.\n$NLC$ is replaced with the unquoted absolute path of the NovaLaunch config directory.\n$WSD$ is replaced with the unquoted absolute path of the directory, presented most recent in the Windows Explorer",
+            "type": "string"
+        },
+        "ShellCommand": {
+            "description": "A Windows shell command.\nVariables in CMD syntax, like %AppData% are expanded.\n$NLC$ is replaced with the unquoted absolute path of the NovaLaunch config directory.\n$WSD$ is replaced with the unquoted absolute path of the directory, presented most recent in the Windows Explorer",
+            "type": "string"
+        },
+        "CliCommandArguments": {
+            "description": "A string passed as command line arguments.\nVariables in CMD syntax, like %AppData% are expanded.\n$NLC$ is replaced with the unquoted absolute path of the NovaLaunch config directory.\n$WSD$ is replaced with the unquoted absolute path of the directory, presented most recent in the Windows Explorer\n$WSS$ is replaced by the double-quoted absolute path of the first selected file or directory in the most recently used Windows Explorer window\n$WSSS$ is replaced by the whitespace separated list of double-quoted absolute paths of all selected files and directories in the most recently used Windows Explorer window",
+            "type": "string"
+        },
+        "WorkingDirectory": {
+            "description": "The current working directory for the new process.\nVariables in CMD syntax, like %AppData% are expanded.\n$NLC$ is replaced with the unquoted absolute path of the NovaLaunch config directory.\n$WSD$ is replaced with the unquoted absolute path of the directory, presented most recent in the Windows Explorer",
+            "type": "string"
+        },
+        "VirtualDesktopNumber": {
+            "description": "The number of the targeted virtual desktop",
+            "type": "integer"
+        },
+        "ScreenNumber": {
+            "description": "The number of the targeted screen",
+            "type": "integer"
+        }
+    },
+
+    "properties": {
+        "mqttTopic": {
+            "description": "Sets the MQTT topic to subscribe to",
+            "type": "string"
+        },
+        "noMqttTopicPrefix": {
+            "description": "Suppresses prepending the global topic prefix",
+            "type": "boolean"
+        },
+        "action": {
+            "description": "Configures the action of the command",
+            "type": "string",
+            "enum": [
+                "Url",
+                "Shell",
+                "Exec",
+                "MinimizeWindow",
+                "NormalWindow",
+                "MaximizeWindow",
+                "CloseWindow",
+                "PinWindow",
+                "UnpinWindow",
+                "MoveWindow",
+                "SwitchVirtualDesktop"
+            ]
+        }
+    },
+
+    "required": ["mqttTopic", "action"],
+
+    "oneOf": [
+
+        {
+            "type": "object",
+            "required": ["action", "url"],
+            "properties": {
+                "action": { "const": "Url" },
+                "url": {
+                    "description": "A URL to open",
+                    "type": "string"
+                },
+                "browser": {
+                    "description": "The optional alternative browser to use",
+                    "type": "string"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": ["action", "cmd"],
+            "properties": {
+                "action": { "const": "Exec" },
+                "cmd": { "$ref": "#/$defs/CliCommand" },
+                "cmdArgs": { "$ref": "#/$defs/CliCommandArguments" },
+                "workingDir": { "$ref": "#/$defs/WorkingDirectory" }
+            }
+        },
+        {
+            "type": "object",
+            "required": ["action", "cmd"],
+            "properties": {
+                "action": { "const": "Shell" },
+                "cmd": { "$ref": "#/$defs/ShellCommand" },
+                "cmdArgs": { "$ref": "#/$defs/CliCommandArguments" },
+                "workingDir": { "$ref": "#/$defs/WorkingDirectory" },
+                "windowStyle": {
+                    "description": "The desired window state for the main window of the new process",
+                    "type": "string",
+                    "enum": ["Normal", "Minimized", "Maximized", "Hidden"]
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": ["action"],
+            "properties": {
+                "action": {
+                    "enum": [
+                        "MinimizeWindow",
+                        "NormalWindow",
+                        "MaximizeWindow",
+                        "CloseWindow",
+                        "PinWindow",
+                        "UnpinWindow"
+                    ]
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": ["action"],
+            "properties": {
+                "action": { "const": "MoveWindow" },
+                "windowPosition": {
+                    "description": "The new boundary for the currently active window",
+                    "type": "object",
+                    "required": ["x", "y", "w", "h"],
+                    "properties": {
+                        "x": { "type": "number", "minimum": 0.0 },
+                        "y": { "type": "number", "minimum": 0.0 },
+                        "w": { "type": "number", "minimum": 0.0 },
+                        "h": { "type": "number", "minimum": 0.0 }
+                    }
+                },
+                "windowStyle": {
+                    "description": "The desired window state for the currently active window",
+                    "type": "string",
+                    "enum": ["Normal", "Minimized", "Maximized"]
+                },
+                "virtualDesktop": { "$ref": "#/$defs/VirtualDesktopNumber" },
+                "screen": { "$ref": "#/$defs/ScreenNumber" }
+            }
+        },
+        {
+            "type": "object",
+            "required": ["action"],
+            "properties": {
+                "action": { "const": "SwitchVirtualDesktop" },
+                "virtualDesktop": { "$ref": "#/$defs/VirtualDesktopNumber" }
+            }
+        }
+
+    ]
+}

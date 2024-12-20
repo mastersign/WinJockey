@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                    xmlns:tools="clr-namespace:Mastersign.WpfTools">
+
+    <BitmapImage x:Key="LogoImage"
+                 UriSource="pack://application:,,,/WinJockey;component/WpfResources/Logo.png"/>
+
+    <Style x:Key="TextBlockDefaultFontSize" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style x:Key="LabelDefaultFontSize" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+    <Style x:Key="HyperlinkButtonDefaultFontSize" TargetType="ui:HyperlinkButton"
+           BasedOn="{StaticResource DefaultUiHyperlinkButtonStyle}">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style x:Key="TextBlockHeadlineFontSize" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <Style x:Key="PageTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="Headline" TargetType="TextBlock"
+           BasedOn="{tools:MultiStyle TextBlockHeadlineFontSize}">
+
+        <Setter Property="Margin" Value="0,12,0,6" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="Caption" TargetType="TextBlock"
+           BasedOn="{tools:MultiStyle TextBlockDefaultFontSize}">
+        
+        <Setter Property="Margin" Value="0,8,0,4" />
+    </Style>
+
+    <Style x:Key="ListValue" TargetType="TextBlock"
+           BasedOn="{tools:MultiStyle TextBlockDefaultFontSize}">
+
+        <Setter Property="Margin" Value="8,8,0,4" />
+        <Setter Property="Grid.Column" Value="1" />
+    </Style>
+    <Style x:Key="ListValueInline" TargetType="TextBlock"
+           BasedOn="{StaticResource ListValue}">
+        <Setter Property="Margin" Value="0,8,0,4" />
+    </Style>
+    <Style x:Key="HighlightedListValue" TargetType="TextBlock"
+           BasedOn="{StaticResource ListValue}">
+
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style x:Key="ListHyperlink" TargetType="ui:HyperlinkButton"
+           BasedOn="{StaticResource HyperlinkButtonDefaultFontSize}">
+
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Margin" Value="8,8,8,0" />
+        <Setter Property="Grid.Column" Value="1" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+</ResourceDictionary>

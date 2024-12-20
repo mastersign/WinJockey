@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://scaleton.mastersign.de/2014/model"
+       xsi:schemaLocation="http://scaleton.mastersign.de/2014/model http://scaleton.mastersign.de/Scaleton_Model_2014.xsd">
+
+  <ReferencedTypes>
+    <ReferencedType id="ProcessWindowStyle" kind="Enum" name="System.Diagnostics.ProcessWindowStyle?" />
+    <ReferencedType id="StringDict" kind="Class" name="System.Collections.Generic.Dictionary&lt;System.String,System.String&gt;" />
+    <ReferencedType id="BrowserDict" kind="Class" name="System.Collections.Generic.Dictionary&lt;System.String,ProcessStart&gt;" />
+    <ReferencedType id="ModifiersDict" kind="Class" name="System.Collections.Generic.Dictionary&lt;ModifierType,bool&gt;" />
+
+    <ReferencedType id="Actions" kind="Class" name="Mastersign.WinJockey.Actions" />
+    <ReferencedType id="MqttConnection" kind="Class" name="Mastersign.WinJockey.MqttConnection" />
+  </ReferencedTypes>
+
+  <Configuration modelType="ChangeTracking">
+    <ChangeTrackingConfiguration level="Notification" />
+    <CollectionType>BindingList</CollectionType>
+  </Configuration>
+
+  <Types>
+
+    <Class name="WinJockeyConfiguration">
+      <CustomInitializer>Initialize</CustomInitializer>
+
+      <Property name="Path" />
+      <Property name="Autostart" type="bool" />
+      <Property name="Setup" type="WinJockeySetup" />
+      <Property name="Commands" type="CommandConfiguration" isCollection="true" />
+    </Class>
+
+    <Class name="WinJockeySetup">
+      <Property name="MqttServer" type="MqttSetup" />
+      <Property name="DefaultBrowser" type="ProcessStart" />
+      <Property name="Browsers" type="BrowserDict" />
+      <Property name="DefaultEditor" type="ProcessStart" />
+    </Class>
+
+    <Class name="MqttSetup">
+      <Property name="Host" />
+      <Property name="Port" type="ushort">
+        <DefaultValue>1883</DefaultValue>
+      </Property>
+      <Property name="BaseTopic" />
+    </Class>
+
+    <Class name="ProcessStart">
+      <Property name="Exe" />
+      <Property name="Args" />
+    </Class>
+
+    <Class name="CommandConfiguration">
+      <!--<CustomInitializer>Initialize</CustomInitializer>-->
+
+      <!-- MQTT Binding -->
+      <Property name="MqttTopic" />
+      <Property name="NoMqttTopicPrefix" type="bool" />
+      
+      <!-- Command -->
+      <Property name="Action" type="ActionType" />
+
+      <!-- Action Url -->
+      <Property name="Url" />
+      <Property name="Browser" />
+
+      <!-- Action Shell, Exec -->
+      <Property name="Cmd" />
+      <Property name="CmdArgs" />
+      <Property name="WorkingDir" />
+      <!-- Action Shell, Exec, MoveWindow -->
+      <Property name="WindowStyle" type="ProcessWindowStyle" />
+
+      <!-- Action SwitchToZone, RotateZone -->
+      <Property name="Zone" />
+      <Property name="ZonePatch" />
+
+      <!-- Action MoveWindow -->
+      <Property name="Screen" type="int?" />
+      <Property name="WindowPosition" type="WindowBounds" />
+
+      <!-- Action MoveWindow, SwitchVirtualDesktop -->
+      <Property name="VirtualDesktop" type="int?" />
+
+    </Class>
+
+    <Enum name="ActionType">
+      <Member name="None" />
+      <Member name="URL" />
+      <Member name="Shell" />
+      <Member name="Exec" />
+      <Member name="SwitchVirtualDesktop" />
+      <Member name="PinWindow" />
+      <Member name="UnpinWindow" />
+      <Member name="MaximizeWindow" />
+      <Member name="NormalWindow" />
+      <Member name="MinimizeWindow" />
+      <Member name="CloseWindow" />
+      <Member name="MoveWindow" />
+    </Enum>
+
+    <Class name="WindowBounds">
+      <Configuration modelType="Plain" />
+      <Property name="X" type="double" />
+      <Property name="Y" type="double" />
+      <Property name="W" type="double" />
+      <Property name="H" type="double" />
+    </Class>
+
+    <Class name="WinJockeyRuntime">
+      <CustomInitializer>Initialize</CustomInitializer>
+
+      <Property name="DebugMessages" type="string" isCollection="true" />
+
+      <Property name="Actions" type="Actions" />
+      <Property name="MqttConnection" type="MqttConnection" />
+      <Property name="Config" type="WinJockeyConfiguration" />
+    </Class>
+
+  </Types>
+</Model>

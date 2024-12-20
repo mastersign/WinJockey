@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="Mastersign.WinJockey.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:res="clr-namespace:Mastersign.WinJockey.Properties.Resources"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="600"
+    Title="{x:Static res:Common.Page_About_Title}"
+    Margin="16,0,0,0"
+    >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Style="{StaticResource Caption}"
+                   Text="{x:Static res:AboutPage.ProductName_Caption}" />
+        <TextBlock x:Name="tbProductName"
+                   Grid.Row="0" Style="{StaticResource HighlightedListValue}"
+                   Text="Product Name" />
+
+        <TextBlock Grid.Row="1" Style="{StaticResource Caption}"
+                   Text="{x:Static res:AboutPage.Publisher_Caption}" />
+        <TextBlock x:Name="tbPublisher"
+                   Grid.Row="1" Style="{StaticResource ListValue}"
+                   Text="Publisher" />
+
+        <TextBlock Grid.Row="2" Style="{StaticResource Caption}"
+                   Text="{x:Static res:AboutPage.Version_Caption}" />
+        <TextBlock x:Name="tbVersion"
+                   Grid.Row="2" Style="{StaticResource ListValue}"
+                   Text="Version" />
+
+        <TextBlock Grid.Row="3" Style="{StaticResource Caption}"
+                   Text="{x:Static res:AboutPage.Website_Caption}" />
+        <ui:HyperlinkButton x:Name="lnkWebsite"
+                            Grid.Row="3" Style="{StaticResource ListHyperlink}">
+            <TextBlock x:Name="tbWebsite" Margin="0,0,0,2"
+                       Text="https://product-website.com" />
+        </ui:HyperlinkButton>
+
+    </Grid>
+</Page>
