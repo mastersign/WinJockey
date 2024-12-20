@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://WinJockey.mastersign.de/command.schema.json",
+    "$id": "https://winjockey.mastersign.de/command.schema.json",
     
     "title": "WinJockey Command",
     "description": "The definition for a WinJockey Command",

@@ -1,5 +1,6 @@
 mqttServer:
-    host: '127.0.0.1:1883'
+    host: '127.0.0.1'
+    port: 1883
     # The base MQTT topic is prepended to the topics of the commands.
     # Environment variables are substituted.
     baseTopic: WinJockey/%COMPUTERNAME%/
