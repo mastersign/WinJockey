@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Windows;
 using Mastersign.WinMan;
 
 #nullable enable
@@ -9,13 +8,15 @@ namespace Mastersign.WinJockey;
 
 public class Actions
 {
+    private const string DEBUG_ERROR_PREFIX = " !! ";
+
     public WinJockeyRuntime Runtime { get; set; } = null!;
 
     private WinJockeyConfiguration Config => Runtime.Config;
 
     private void Debug(string message) => Runtime.Debug(message);
     
-    private static void RunAction(
+    private void RunAction(
         Action<CommandConfiguration> action,
         Func<CommandConfiguration, string> errorMessageSource,
         CommandConfiguration command)
@@ -26,24 +27,29 @@ public class Actions
         }
         catch (Exception ex)
         {
-            System.Windows.MessageBox.Show(
-                errorMessageSource(command) +
-                $"\n\n{ex.GetType().FullName}:\n{ex.Message}",
-                $"WinJockey {command.Action.ToString().ToUpperInvariant()} Action Error",
-                MessageBoxButton.OK, MessageBoxImage.Warning);
+            Runtime.Debug(DEBUG_ERROR_PREFIX + ex.GetType().FullName);
+            Runtime.Debug("    " + ex.Message);
+            //System.Windows.MessageBox.Show(
+            //    errorMessageSource(command) +
+            //    $"\n\n{ex.GetType().FullName}:\n{ex.Message}",
+            //    $"WinJockey {command.Action.ToString().ToUpperInvariant()} Action Error",
+            //    MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 
-    private static void RunAction(Action action, Func<string> errorMessageSource, CommandConfiguration command)
+    private void RunAction(Action action, Func<string> errorMessageSource, CommandConfiguration command)
         => RunAction(_ => action(), _ => errorMessageSource(), command);
 
-    private static void RunAction(Action action, string errorMessage, CommandConfiguration command)
+    private void RunAction(Action action, string errorMessage, CommandConfiguration command)
         => RunAction(action, () => errorMessage, command);
 
     public void Trigger(CommandConfiguration command)
     {
         int? screen;
         int? vDesktop;
+        string? shutdownMessage;
+        int? shutdownTimeoutSeconds;
+        bool shutdownForce;
         if (command.Action == ActionType.None) return;
         switch (command.Action)
         {
@@ -144,7 +150,50 @@ public class Actions
                 vDesktop = command.VirtualDesktop;
                 RunAction(
                     () => WindowManagement.SwitchToVirtualDesktop(vDesktop ?? 0),
-                    () => $"Error switching virtual desktop {command.VirtualDesktop ?? 0}.",
+                    () => $"Error switching virtual desktop {vDesktop ?? 0}.",
+                    command);
+                break;
+
+            case ActionType.LockSession:
+                RunAction(
+                    () => WindowsSession.Lock(),
+                    () => $"Error locking windows session.",
+                    command);
+                break;
+            case ActionType.StandbySystem:
+                RunAction(
+                    () => WindowsPower.Standby(),
+                    () => $"Error initiating system standby.",
+                    command);
+                break;
+            case ActionType.HibernateSystem:
+                RunAction(
+                    () => WindowsPower.Hibernate(),
+                    () => $"Error initiating system hibernation.",
+                    command);
+                break;
+            case ActionType.ShutdownSystem:
+                shutdownMessage = command.ShutdownMessage;
+                shutdownTimeoutSeconds = command.ShutdownTimeout;
+                shutdownForce = command.ShutdownForce;
+                RunAction(
+                    () => WindowsPower.InitiateShutdown(shutdownMessage,
+                        shutdownTimeoutSeconds ?? 0,
+                        forceAppClose: shutdownForce,
+                        reboot: false),
+                    () => $"Error initiating system shutdown.",
+                    command);
+                break;
+            case ActionType.RebootSystem:
+                shutdownMessage = command.ShutdownMessage;
+                shutdownTimeoutSeconds = command.ShutdownTimeout;
+                shutdownForce = command.ShutdownForce;
+                RunAction(
+                    () => WindowsPower.InitiateShutdown(shutdownMessage,
+                        shutdownTimeoutSeconds ?? 0,
+                        forceAppClose: shutdownForce,
+                        reboot: true),
+                    () => $"Error initiating system reboot.",
                     command);
                 break;
         }

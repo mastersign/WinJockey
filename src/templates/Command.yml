@@ -13,6 +13,9 @@ mqttTopic: MyCommand
 # - MinimizeWindow, NormalWindow, MaximizeWindow, CloseWindow, PinWindow, UnpinWindow
 # - MoveWindow
 # - SwitchVirtualDesktop
+# - LockSession
+# - StandbySystem, HibernateSystem
+# - ShutdownSystem, RebootSystem
 action: Shell
 
 # url: https://www.mastersign.de
@@ -45,3 +48,7 @@ workingDir: '%UserProfile%\www'
 #   w: 50
 #   h: 50
 # windowStyle: Normal  # Normal, Minimized, Maximized
+
+# shutdownMessage: The system is shut down by WinJockey
+# shutdownTimeout: 10
+# shutdownForce: false

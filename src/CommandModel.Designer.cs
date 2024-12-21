@@ -23,6 +23,11 @@ namespace Mastersign.WinJockey
         MinimizeWindow,
         CloseWindow,
         MoveWindow,
+        LockSession,
+        StandbySystem,
+        HibernateSystem,
+        ShutdownSystem,
+        RebootSystem,
     }
     
     public partial class WinJockeyConfiguration : INotifyPropertyChanged
@@ -967,6 +972,102 @@ namespace Mastersign.WinJockey
                 }
                 _virtualDesktop = value;
                 this.OnVirtualDesktopChanged();
+            }
+        }
+        
+        #endregion
+        
+        #region Property ShutdownMessage
+        
+        private string _shutdownMessage;
+        
+        public event EventHandler ShutdownMessageChanged;
+        
+        protected virtual void OnShutdownMessageChanged()
+        {
+            EventHandler handler = ShutdownMessageChanged;
+            if (!ReferenceEquals(handler, null))
+            {
+                handler(this, EventArgs.Empty);
+            }
+            this.OnPropertyChanged(@"ShutdownMessage");
+        }
+        
+        public virtual string ShutdownMessage
+        {
+            get { return _shutdownMessage; }
+            set
+            {
+                if (string.Equals(value, _shutdownMessage))
+                {
+                    return;
+                }
+                _shutdownMessage = value;
+                this.OnShutdownMessageChanged();
+            }
+        }
+        
+        #endregion
+        
+        #region Property ShutdownTimeout
+        
+        private int? _shutdownTimeout;
+        
+        public event EventHandler ShutdownTimeoutChanged;
+        
+        protected virtual void OnShutdownTimeoutChanged()
+        {
+            EventHandler handler = ShutdownTimeoutChanged;
+            if (!ReferenceEquals(handler, null))
+            {
+                handler(this, EventArgs.Empty);
+            }
+            this.OnPropertyChanged(@"ShutdownTimeout");
+        }
+        
+        public virtual int? ShutdownTimeout
+        {
+            get { return _shutdownTimeout; }
+            set
+            {
+                if ((value == _shutdownTimeout))
+                {
+                    return;
+                }
+                _shutdownTimeout = value;
+                this.OnShutdownTimeoutChanged();
+            }
+        }
+        
+        #endregion
+        
+        #region Property ShutdownForce
+        
+        private bool _shutdownForce;
+        
+        public event EventHandler ShutdownForceChanged;
+        
+        protected virtual void OnShutdownForceChanged()
+        {
+            EventHandler handler = ShutdownForceChanged;
+            if (!ReferenceEquals(handler, null))
+            {
+                handler(this, EventArgs.Empty);
+            }
+            this.OnPropertyChanged(@"ShutdownForce");
+        }
+        
+        public virtual bool ShutdownForce
+        {
+            get { return _shutdownForce; }
+            set
+            {
+                if ((value == _shutdownForce))
+                {
+                    return;
+                }
+                _shutdownForce = value;
+                this.OnShutdownForceChanged();
             }
         }
         

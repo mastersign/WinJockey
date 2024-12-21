@@ -31,11 +31,14 @@ namespace Mastersign.WinJockey
 
             Loaded += (sender, args) =>
             {
-                SystemThemeWatcher.Watch(
-                    this,                                  // Window class
-                    WindowBackdropType.Auto,
-                    updateAccents: true                    // Whether to change accents automatically
-                );
+                WatchSystemTheme();
+                //WindowsSession.RegisterSessionLockHandler(
+                //    unlockHandler: () =>
+                //    {
+                //        //SystemThemeWatcher.UnWatch(this);
+                //        //WatchSystemTheme();
+                //        ApplicationThemeManager.ApplySystemTheme(updateAccent: true);
+                //    });
 
                 DataContext = CurrentApp.Runtime;
 
@@ -50,6 +53,15 @@ namespace Mastersign.WinJockey
             };
 
             StateChanged += WindowStateChangedHandler;
+        }
+
+        private void WatchSystemTheme()
+        {
+            SystemThemeWatcher.Watch(
+                this,                                  // Window class
+                WindowBackdropType.Auto,
+                updateAccents: true                    // Whether to change accents automatically
+            );
         }
 
         private void WindowStateChangedHandler(object sender, EventArgs e)

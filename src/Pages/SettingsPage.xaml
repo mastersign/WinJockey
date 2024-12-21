@@ -37,6 +37,9 @@
             <TextBlock
                 Style="{StaticResource Headline}"
                 Text="{x:Static res:SettingsPage.Setup_Headline}" />
+            <TextBlock
+                Style="{StaticResource Caption}"
+                Text="{Binding Config.RealPath}" />
             <ui:Button
                 x:Name="ButtonEditSetup"
                 Margin="0,8,0,0"

@@ -58,44 +58,44 @@
         </DataTemplate>
     </Page.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-        <StackPanel
-            Margin="0,0,12,0">
+    <StackPanel
+        Margin="0,0,12,0">
 
+        <TextBlock
+            Style="{StaticResource Headline}"
+            Text="{x:Static res:CommandsPage.NewCommand_Headline}" />
+        <Grid 
+            Margin="0,8,0,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
             <TextBlock
-                Style="{StaticResource Headline}"
-                Text="{x:Static res:CommandsPage.NewCommand_Headline}" />
-            <Grid 
-                Margin="0,8,0,8">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock
-                    Style="{StaticResource Caption}"
-                    Text="{x:Static res:CommandsPage.NewCommand_Caption}" />
-                <TextBox
-                    x:Name="TextBoxNewCommandName"
-                    Grid.Column="1" Margin="12,0,4,0" 
-                    TextChanged="TextBoxNewCommandName_TextChanged"/>
-                <ui:Button
-                    x:Name="ButtonNewCommand"
-                    Grid.Column="2" VerticalAlignment="Stretch"
-                    Click="ButtonNewCommand_Click">
-                    <ui:SymbolIcon Symbol="Add20" />
-                </ui:Button>
-            </Grid>
+                Style="{StaticResource Caption}"
+                Text="{x:Static res:CommandsPage.NewCommand_Caption}" />
+            <TextBox
+                x:Name="TextBoxNewCommandName"
+                Grid.Column="1" Margin="12,0,4,0" 
+                TextChanged="TextBoxNewCommandName_TextChanged"/>
+            <ui:Button
+                x:Name="ButtonNewCommand"
+                Grid.Column="2" VerticalAlignment="Stretch"
+                Click="ButtonNewCommand_Click">
+                <ui:SymbolIcon Symbol="Add20" />
+            </ui:Button>
+        </Grid>
 
-            <TextBlock
-                Style="{StaticResource Headline}"
-                Text="{x:Static res:CommandsPage.List_Headline}" />
-            <ui:ListView
-                ItemsSource="{Binding Config.Commands}"
-                ItemTemplate="{StaticResource CommandConfigurationTemplate}">
-                
-            </ui:ListView>
+        <TextBlock
+            Style="{StaticResource Headline}"
+            Text="{x:Static res:CommandsPage.List_Headline}" />
+        <ui:ListView
+            VerticalAlignment="Top"
+            Margin="0,0,0,12"
+            ItemsSource="{Binding Config.Commands}"
+            ItemTemplate="{StaticResource CommandConfigurationTemplate}">
 
-        </StackPanel>
-    </ScrollViewer>
+        </ui:ListView>
+
+    </StackPanel>
 </Page>

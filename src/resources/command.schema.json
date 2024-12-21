@@ -23,7 +23,7 @@
             "type": "string"
         },
         "VirtualDesktopNumber": {
-            "description": "The number of the targeted virtual desktop",
+            "description": "The number of the targeted virtual desktop, starting by zero",
             "type": "integer"
         },
         "ScreenNumber": {
@@ -51,7 +51,12 @@
                 "PinWindow",
                 "UnpinWindow",
                 "MoveWindow",
-                "SwitchVirtualDesktop"
+                "SwitchVirtualDesktop",
+                "LockSession",
+                "StandbySystem",
+                "HibernateSystem",
+                "ShutdownSystem",
+                "RebootSystem"
             ]
         }
     },
@@ -61,6 +66,7 @@
     "oneOf": [
 
         {
+            "description": "A command for opening a URL",
             "type": "object",
             "required": ["action", "url"],
             "properties": {
@@ -76,6 +82,7 @@
             }
         },
         {
+            "description": "A command for running an executable",
             "type": "object",
             "required": ["action", "cmd"],
             "properties": {
@@ -86,6 +93,7 @@
             }
         },
         {
+            "description": "A windows shell command",
             "type": "object",
             "required": ["action", "cmd"],
             "properties": {
@@ -101,6 +109,7 @@
             }
         },
         {
+            "description": "A command without further parameters",
             "type": "object",
             "required": ["action"],
             "properties": {
@@ -111,12 +120,16 @@
                         "MaximizeWindow",
                         "CloseWindow",
                         "PinWindow",
-                        "UnpinWindow"
+                        "UnpinWindow",
+                        "LockSession",
+                        "StandbySystem",
+                        "HibernateSystem"
                     ]
                 }
             }
         },
         {
+            "description": "A command for moving the current window",
             "type": "object",
             "required": ["action"],
             "properties": {
@@ -142,11 +155,28 @@
             }
         },
         {
+            "description": "A command for switching to a virtual desktop",
             "type": "object",
             "required": ["action"],
             "properties": {
                 "action": { "const": "SwitchVirtualDesktop" },
                 "virtualDesktop": { "$ref": "#/$defs/VirtualDesktopNumber" }
+            }
+        },
+        {
+            "description": "A command to shutdown and optionally reboot the system",
+            "type": "object",
+            "required": ["action"],
+            "properties": {
+                "action": {
+                    "enum": [
+                        "ShutdownSystem",
+                        "RebootSystem"
+                    ]
+                },
+                "shutdownMessage": { "type": "string", "description": "A message to display to the user before shutdown" },
+                "shutdownTimeout": { "type": "number", "description": "The timeout for the shutdown in seconds" },
+                "shutdownForce": { "type": "boolean", "description": "Close all running apps by force" }
             }
         }
 

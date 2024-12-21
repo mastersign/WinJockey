@@ -79,6 +79,11 @@
 
       <!-- Action MoveWindow, SwitchVirtualDesktop -->
       <Property name="VirtualDesktop" type="int?" />
+      
+      <!-- Action ShutdownSystem, RebootSystem -->
+      <Property name="ShutdownMessage" />
+      <Property name="ShutdownTimeout" type="int?" />
+      <Property name="ShutdownForce" type="bool" />
 
     </Class>
 
@@ -95,6 +100,11 @@
       <Member name="MinimizeWindow" />
       <Member name="CloseWindow" />
       <Member name="MoveWindow" />
+      <Member name="LockSession" />
+      <Member name="StandbySystem" />
+      <Member name="HibernateSystem" />
+      <Member name="ShutdownSystem" />
+      <Member name="RebootSystem" />
     </Enum>
 
     <Class name="WindowBounds">
