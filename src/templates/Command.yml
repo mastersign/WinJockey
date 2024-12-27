@@ -16,11 +16,15 @@ mqttTopic: MyCommand
 # - LockSession
 # - StandbySystem, HibernateSystem
 # - ShutdownSystem, RebootSystem
+# - WakeOnLan 
+ 
 action: Shell
 
+# Parameters for Url:
 # url: https://www.mastersign.de
 # browser: NewWindow
 
+# Parameters for Shell and Exec:
 cmd: python
 cmdArgs: -m http.server
 workingDir: '%UserProfile%\www'
@@ -40,6 +44,10 @@ workingDir: '%UserProfile%\www'
 
 # In cmd, cmdArgs and workingDir $WJC$ is replaced by the absolute path of the WinJockey config directory.
 
+# Parameters for switching the virtual desktop:
+# virtualDesktop: 0
+
+# Parameters for moving the current window:
 # virtualDesktop: 0
 # screen: 0
 # windowPosition:
@@ -49,6 +57,14 @@ workingDir: '%UserProfile%\www'
 #   h: 50
 # windowStyle: Normal  # Normal, Minimized, Maximized
 
+# Parameters for shutting down or rebooting the system:
 # shutdownMessage: The system is shut down by WinJockey
 # shutdownTimeout: 10
 # shutdownForce: false
+
+# Target configuration for wake on LAN:
+# mac: 00-00-00-00-00-00
+# subnet: 192.168.0.0/24
+
+# If the subnet is ommitted, the magic packet is send from all active interfaces;
+# otherwise only from interfaces with addresses from the given subnet.

@@ -50,6 +50,8 @@ public class Actions
         string? shutdownMessage;
         int? shutdownTimeoutSeconds;
         bool shutdownForce;
+        string? mac;
+        string? subnet;
         if (command.Action == ActionType.None) return;
         switch (command.Action)
         {
@@ -194,6 +196,14 @@ public class Actions
                         forceAppClose: shutdownForce,
                         reboot: true),
                     () => $"Error initiating system reboot.",
+                    command);
+                break;
+            case ActionType.WakeOnLan:
+                mac = command.Mac;
+                subnet = command.Subnet;
+                RunAction(
+                    () => WakeOnLan.SendMagicPacket(mac, subnet),
+                    () => $"Error sending magic packet.",
                     command);
                 break;
         }

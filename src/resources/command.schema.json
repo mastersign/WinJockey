@@ -56,7 +56,8 @@
                 "StandbySystem",
                 "HibernateSystem",
                 "ShutdownSystem",
-                "RebootSystem"
+                "RebootSystem",
+                "WakeOnLan"
             ]
         }
     },
@@ -177,6 +178,16 @@
                 "shutdownMessage": { "type": "string", "description": "A message to display to the user before shutdown" },
                 "shutdownTimeout": { "type": "number", "description": "The timeout for the shutdown in seconds" },
                 "shutdownForce": { "type": "boolean", "description": "Close all running apps by force" }
+            }
+        },
+        {
+            "description": "A command to send a magic packet for wake on LAN",
+            "type": "object",
+            "required": ["action", "mac"],
+            "properties": {
+                "action": { "const": "WakeOnLan" },
+                "mac": { "type": "string", "description": "The MAC address of the target system" },
+                "subnet": { "type": "string", "description": "The target subnet in CIDR format, to select the network interface" }
             }
         }
 

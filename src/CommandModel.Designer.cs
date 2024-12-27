@@ -28,6 +28,7 @@ namespace Mastersign.WinJockey
         HibernateSystem,
         ShutdownSystem,
         RebootSystem,
+        WakeOnLan,
     }
     
     public partial class WinJockeyConfiguration : INotifyPropertyChanged
@@ -1068,6 +1069,70 @@ namespace Mastersign.WinJockey
                 }
                 _shutdownForce = value;
                 this.OnShutdownForceChanged();
+            }
+        }
+        
+        #endregion
+        
+        #region Property Mac
+        
+        private string _mac;
+        
+        public event EventHandler MacChanged;
+        
+        protected virtual void OnMacChanged()
+        {
+            EventHandler handler = MacChanged;
+            if (!ReferenceEquals(handler, null))
+            {
+                handler(this, EventArgs.Empty);
+            }
+            this.OnPropertyChanged(@"Mac");
+        }
+        
+        public virtual string Mac
+        {
+            get { return _mac; }
+            set
+            {
+                if (string.Equals(value, _mac))
+                {
+                    return;
+                }
+                _mac = value;
+                this.OnMacChanged();
+            }
+        }
+        
+        #endregion
+        
+        #region Property Subnet
+        
+        private string _subnet;
+        
+        public event EventHandler SubnetChanged;
+        
+        protected virtual void OnSubnetChanged()
+        {
+            EventHandler handler = SubnetChanged;
+            if (!ReferenceEquals(handler, null))
+            {
+                handler(this, EventArgs.Empty);
+            }
+            this.OnPropertyChanged(@"Subnet");
+        }
+        
+        public virtual string Subnet
+        {
+            get { return _subnet; }
+            set
+            {
+                if (string.Equals(value, _subnet))
+                {
+                    return;
+                }
+                _subnet = value;
+                this.OnSubnetChanged();
             }
         }
         
