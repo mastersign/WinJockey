@@ -62,7 +62,8 @@ workingDir: '%UserProfile%\www'
 # shutdownTimeout: 10
 # shutdownForce: false
 
-# Target configuration for wake on LAN:
+# Parameters for wake on LAN:
+
 # mac: 00-00-00-00-00-00
 # subnet: 192.168.0.0/24
 
