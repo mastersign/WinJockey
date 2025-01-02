@@ -34,8 +34,8 @@ partial class WinJockeyConfiguration
     {
         PathChanged += PathChangedhandler;
         Path = Join(
-            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-            ".winjockey");
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "Mastersign", "WinJockey");
         Autostart = AutostartManager.IsAutostartEnabled();
     }
 
