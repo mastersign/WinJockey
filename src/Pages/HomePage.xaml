@@ -8,12 +8,12 @@
     xmlns:tools="clr-namespace:Mastersign.WpfTools"
     xmlns:local="clr-namespace:Mastersign.WinJockey"
     xmlns:res="clr-namespace:Mastersign.WinJockey.Properties.Resources"
-    mc:Ignorable="d" 
-    d:DataContext="{d:DesignInstance Type=local:DesignTimeWinJockeyRuntime, IsDesignTimeCreatable=True}"
-    d:DesignHeight="450" d:DesignWidth="600"
     Name="home"
     Title="{x:Static res:Common.Page_Home_Title}"
     Margin="32,0,0,0"
+    mc:Ignorable="d" 
+    d:DataContext="{d:DesignInstance Type=local:DesignTimeWinJockeyRuntime, IsDesignTimeCreatable=True}"
+    d:DesignHeight="450" d:DesignWidth="600"
     >
 
     <Grid>

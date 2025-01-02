@@ -8,11 +8,12 @@
     xmlns:tools="clr-namespace:Mastersign.WpfTools"
     xmlns:res="clr-namespace:Mastersign.WinJockey.Properties.Resources"
     xmlns:local="clr-namespace:Mastersign.WinJockey"
+    Name="commands"
+    Title="{x:Static res:Common.Page_Commands_Title}"
+    Margin="16,0,0,0"
     mc:Ignorable="d" 
     d:DataContext="{d:DesignInstance Type=local:DesignTimeWinJockeyRuntime, IsDesignTimeCreatable=True}"
     d:DesignHeight="450" d:DesignWidth="600"
-    Title="{x:Static res:Common.Page_Commands_Title}"
-    Margin="16,0,0,0"
     >
     
     <Page.Resources>

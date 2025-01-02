@@ -6,10 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:res="clr-namespace:Mastersign.WinJockey.Properties.Resources"
-    mc:Ignorable="d"
-    d:DesignHeight="450" d:DesignWidth="600"
+    Name="about"
     Title="{x:Static res:Common.Page_About_Title}"
     Margin="16,0,0,0"
+    mc:Ignorable="d"
+    d:DesignHeight="450" d:DesignWidth="600"
     >
 
     <Grid>
