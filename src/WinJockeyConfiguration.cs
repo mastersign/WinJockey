@@ -152,12 +152,33 @@ partial class WinJockeyConfiguration
 
     public void EditCommandConfiguration(CommandConfiguration command) => RunDefaultEditor(command.Source);
 
+    private void AsureConfiguration()
+    {
+        if (!Directory.Exists(RealPath))
+        {
+            Directory.CreateDirectory(RealPath);
+        }
+        if (!File.Exists(SetupFile))
+        {
+            DeployTemplate("Setup.yml", SetupFile);
+        }
+        if (!Directory.Exists(CommandsDir))
+        {
+            Directory.CreateDirectory(CommandsDir);
+        }
+    }
+
     public void OpenInExplorer()
     {
+        AsureConfiguration();
         Process.Start(new ProcessStartInfo("explorer", '"' + RealPath + '"'));
     }
 
-    public void EditSetup() => RunDefaultEditor(Combine(SetupFile));
+    public void EditSetup()
+    {
+        AsureConfiguration();
+        RunDefaultEditor(Combine(SetupFile));
+    }
 
     public void RunDefaultEditor(string filePath)
     {
