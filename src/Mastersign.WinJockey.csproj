@@ -16,13 +16,11 @@
 
     <BaseOutputPath>..\bin</BaseOutputPath>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>$(DefineConstants);WIN_10_1809</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup>
     <DefineConstants>$(DefineConstants);WIN_10_1809</DefineConstants>
   </PropertyGroup>
 

@@ -1,0 +1,42 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui"
+     xmlns:netfx="http://wixtoolset.org/schemas/v4/wxs/netfx">
+  <Package
+      Name="WinJockey"
+      Manufacturer="Tobias Kiertscher"
+      Version="1.0.0.0"
+      Compressed="yes"
+      UpgradeCode="ca4d92ae-8e5b-4377-acea-71c77098cba9"
+  >
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Product Icon -->
+    <Icon Id="WinJockey.ico" SourceFile="Icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="WinJockey.ico" />
+
+
+    <!-- UI Resources -->
+    <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Dialog.bmp" />
+
+    <!-- Setup UI -->
+    <ui:WixUI
+      Id="WixUI_InstallDir"
+      InstallDirectory="INSTALLFOLDER" />
+
+    <!-- Features -->
+
+    <Feature Id="WinJockey" Title="!(loc.Feature_WinJockey_Title)"
+             Description="!(loc.Feature_WinJockey_Description)"
+             Display="expand"
+             AllowAdvertise="no">
+
+      <ComponentGroupRef Id="ApplicationFiles" />
+      <ComponentGroupRef Id="StartMenuEntries"/>
+    </Feature>
+    
+  </Package>
+</Wix>

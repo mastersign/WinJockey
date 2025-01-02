@@ -1,0 +1,31 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.2">
+  <!--
+  <PropertyGroup>
+    <SignOutput>true</SignOutput>
+  </PropertyGroup>
+  <Target Name="SignMsi">
+    <Message Importance="high" Text="SignMsi: @(SignMsi)" />
+    <Exec Command='signtool.exe sign /v /f $(TestCertificate) /p password "%(SignMsi.FullPath)" ' />
+  </Target>
+  -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutputPath>..\release\x64</OutputPath>
+    <Platforms>x86;x64</Platforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutputPath>..\release\x86</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="5.*" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\Mastersign.WinJockey.csproj" />
+    <HarvestDirectory Include="..\publish\$(Platform)">
+      <ComponentGroupName>ApplicationFiles</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+    </HarvestDirectory>
+    <BindPath Include="..\publish\$(Platform)" />
+  </ItemGroup>
+</Project>

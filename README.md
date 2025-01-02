@@ -1,3 +1,3 @@
 # WinJockey
 
-> Automating the Windows desktop remotely by MQTT messages
+> Control the Windows desktop remotely via MQTT messages

@@ -1,0 +1,25 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="StartMenuEntries" Directory="ApplicationStartMenuFolder">
+
+      <Component Id="StartMenu"
+        Directory="ApplicationStartMenuFolder">
+        <RegistryValue Root="HKCU" Key="Software\Mastersign\WinJockey"
+            Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+        <RemoveFolder On="uninstall" Id="CleanUpShortCut"
+            Directory="ApplicationStartMenuFolder" />
+      </Component>
+
+      <Component Id="WinJockeyStartMenuShortcutLNK" Guid="{64236577-f2b3-4861-ba98-160d39d43918}">
+        <RegistryValue Root="HKCU" Key="Software\Mastersign\WinJockey"
+          Name="WinJockeyStartMenuShortcut" Type="integer" Value="1" KeyPath="yes"/>
+        <Shortcut
+          Name="WinJockey"
+          Description="WinJockey steuert den Windows Desktop via MQTT"
+          Target="[INSTALLFOLDER]WinJockey.exe"
+          WorkingDirectory="INSTALLFOLDER"/>
+      </Component>
+    
+    </ComponentGroup>
+  </Fragment>
+</Wix>

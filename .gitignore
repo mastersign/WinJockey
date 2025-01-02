@@ -1,7 +1,10 @@
-/bin/
+/publish/
+/release/
 
+bin/
 obj/
 .vs/
 
 *.suo
 *.user
+*.pfx
