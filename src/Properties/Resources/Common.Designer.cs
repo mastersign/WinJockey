@@ -97,6 +97,15 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open configuration folder ähnelt.
+        /// </summary>
+        public static string Command_OpenConfigurationDirectory {
+            get {
+                return ResourceManager.GetString("Command_OpenConfigurationDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Setup Visual Studio Code as Editor ähnelt.
         /// </summary>
         public static string Command_SetupForVsCode {

@@ -108,6 +108,17 @@ namespace Mastersign.WinJockey
             AutostartManager.DisableAutostart();
             CurrentApp.Runtime.Config.Autostart = false;
         }
+
+        private void CommandOpenConfigurationDirectoryExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = CurrentApp?.Runtime?.Config != null;
+        }
+
+        private void CommandOpenConfigurationDirectoryExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            CurrentApp.Runtime.Config.OpenInExplorer();
+        }
+
         private void CommandEditSetupExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = CurrentApp?.Runtime?.Config != null;

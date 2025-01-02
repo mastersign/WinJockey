@@ -129,6 +129,9 @@
   <data name="Command_EnableAutostart" xml:space="preserve">
     <value>Autostart aktivieren</value>
   </data>
+  <data name="Command_OpenConfigurationDirectory" xml:space="preserve">
+    <value>Konfigurationsverzeichnis öffnen</value>
+  </data>
   <data name="Command_SetupForVsCode" xml:space="preserve">
     <value>Visual Studio Code als Editor konfigurieren</value>
   </data>

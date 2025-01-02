@@ -152,6 +152,11 @@ partial class WinJockeyConfiguration
 
     public void EditCommandConfiguration(CommandConfiguration command) => RunDefaultEditor(command.Source);
 
+    public void OpenInExplorer()
+    {
+        Process.Start(new ProcessStartInfo("explorer", '"' + RealPath + '"'));
+    }
+
     public void EditSetup() => RunDefaultEditor(Combine(SetupFile));
 
     public void RunDefaultEditor(string filePath)

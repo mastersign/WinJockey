@@ -11,6 +11,9 @@ public class Commands
     public static RoutedUICommand DisableAutostart { get; }
         = new RoutedUICommand(Common.Command_DisableAutostart, nameof(DisableAutostart), typeof(Commands));
 
+    public static RoutedUICommand OpenConfigurationDirectory { get; }
+        = new RoutedUICommand(Common.Command_OpenConfigurationDirectory, nameof(OpenConfigurationDirectory), typeof(Commands));
+
     public static RoutedUICommand EditSetup { get; }
         = new RoutedUICommand(Common.Command_EditSetup, nameof(EditSetup), typeof(Commands));
 

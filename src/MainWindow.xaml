@@ -24,12 +24,15 @@
         <CommandBinding Command="local:Commands.DisableAutostart"
                         CanExecute="CommandDisableAutostartCanExecute"
                         Executed="CommandDisableAutostartExecuted" />
-        <CommandBinding Command="local:Commands.EditSetup"
-                        CanExecute="CommandEditSetupExecute"
-                        Executed="CommandEditSetupExecuted" />
+        <CommandBinding Command="local:Commands.OpenConfigurationDirectory"
+                        CanExecute="CommandOpenConfigurationDirectoryExecute"
+                        Executed="CommandOpenConfigurationDirectoryExecuted" />
         <CommandBinding Command="local:Commands.SetupForVsCode"
                         CanExecute="CommandSetupForVsCodeExecute"
                         Executed="CommandSetupForVsCodeExecuted" />
+        <CommandBinding Command="local:Commands.EditSetup"
+                        CanExecute="CommandEditSetupExecute"
+                        Executed="CommandEditSetupExecuted" />
     </ui:FluentWindow.CommandBindings>
 
     <Grid>
