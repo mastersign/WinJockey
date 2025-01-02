@@ -40,12 +40,18 @@
               Margin="0,0,0,16">
             
         </Grid>-->
-        
+
         <ItemsControl x:Name="itemsDebugMessage"
                  Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,8,8"
-                 FontFamily="Consolas" FontSize="11"
+                 FontFamily="Consolas"
                  ItemsSource="{Binding DebugMessages}"
-                 />
+                 >
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="11" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
     </Grid>
 </Page>
