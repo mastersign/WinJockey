@@ -48,10 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="WpfResources\Logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
     <PackageReference Include="WPF-UI" Version="3.0.5" />
     <PackageReference Include="WPF-UI.Tray" Version="3.0.5" />
