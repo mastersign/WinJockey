@@ -32,13 +32,7 @@ namespace Mastersign.WinJockey
             Loaded += (sender, args) =>
             {
                 WatchSystemTheme();
-                //WindowsSession.RegisterSessionLockHandler(
-                //    unlockHandler: () =>
-                //    {
-                //        //SystemThemeWatcher.UnWatch(this);
-                //        //WatchSystemTheme();
-                //        ApplicationThemeManager.ApplySystemTheme(updateAccent: true);
-                //    });
+                ApplicationThemeManager.ApplySystemTheme();
 
                 DataContext = CurrentApp.Runtime;
 
@@ -48,8 +42,6 @@ namespace Mastersign.WinJockey
                 }
 
                 navigationViewMain.Navigate(typeof(HomePage));
-                // ApplicationThemeManager.Apply(ApplicationTheme.Dark, WindowBackdropType.Auto, updateAccent: true);
-                ApplicationThemeManager.ApplySystemTheme();
             };
 
             StateChanged += WindowStateChangedHandler;
