@@ -6,7 +6,7 @@ namespace Mastersign.WinJockey;
 internal static class AutostartManager
 {
     private const string RUN_KEY_PATH = @"Software\Microsoft\Windows\CurrentVersion\Run";
-    private const string RUN_VALUE_NAME = "NovaLaunch";
+    private const string RUN_VALUE_NAME = "WinJockey";
 
     private static string ExecutablePath => System.IO.Path.ChangeExtension(
         Assembly.GetExecutingAssembly().Location, ".exe");
