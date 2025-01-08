@@ -1,3 +1,7 @@
+param (
+    [switch]$NoSetupPackages
+)
+
 $ErrorActionPreference = 'Stop'
 
 $locales = @(
@@ -6,6 +10,19 @@ $locales = @(
 $platforms = @(
     "x64"
     "x86"
+    "AnyCPU"
+)
+$zipPlatforms = @(
+    "AnyCPU"
+)
+$setupPlatforms = @(
+    "x64"
+    "x86"
+)
+$suppressedPlatformSuffix = "AnyCPU"
+$excludeFiles = @(
+    "*.deps.json"
+    #"*.pdb"
 )
 $framework = "net9.0-windows"
 $verbosity = "minimal"
@@ -13,7 +30,7 @@ $appProject = "$PSScriptRoot\src\Mastersign.WinJockey.csproj"
 $setupProject = "$PSScriptRoot\setup\Setup.wixproj"
 $setupPackageFile = "$PSScriptRoot\setup\Package.wxs"
 
-$version =([Version]([xml](Get-Content $setupPackageFile)).Wix.Package.Version).ToString(3)
+$version = ([Version]([xml](Get-Content $setupPackageFile)).Wix.Package.Version).ToString(3)
 
 if (-not $version -match "\d+\.\d+\.\d+") {
     Write-Error "Failed to read project version from $appProject"
@@ -44,18 +61,35 @@ foreach ($platform in $platforms) {
         /m /nodereuse:false `
         /v:$verbosity
 
-    & $msbuild $setupProject `
-        /t:Build `
-        /p:Platform=$platform `
-        /p:Configuration=Release `
-        /m /nodereuse:false `
-        /v:$verbosity
-
-    foreach ($locale in $locales) {
-        $setupPackage = "$PSScriptRoot\release\WinJockey_v${version}_${platform}.msi"
-        Copy-Item "$PSScriptRoot\release\$platform\$locale\Setup.msi" $setupPackage -Force
-        $setupPackages += $setupPackage
+    $pubDir = "$PSScriptRoot\publish\$platform"
+    foreach ($pattern in $excludeFiles) {
+        Get-ChildItem "$pubDir\$pattern" | Remove-Item
     }
 }
+foreach ($platform in $zipPlatforms) {
+    $pubDir = "$PSScriptRoot\publish\$platform"
+    $suffix = if ($suppressedPlatformSuffix -eq $platform) { "" } else { "_$platform"}
+    $zipArchive = "$PSScriptRoot\release\WinJockey_v${version}${suffix}.zip"
+    Compress-Archive -Path "$pubDir\*" -DestinationPath $zipArchive -CompressionLevel Optimal -Force
+}
 
-& "$PSScriptRoot\sign.ps1" $setupPackages
+if (!$NoSetupPackages) {
+    foreach ($platform in $setupPlatforms) {
+        & $msbuild $setupProject `
+            /t:Build `
+            /p:Platform=$platform `
+            /p:Configuration=Release `
+            /m /nodereuse:false `
+            /v:$verbosity
+
+        $suffix = if ($suppressedPlatformSuffix -eq $platform) { "" } else { "_$platform"}
+
+        foreach ($locale in $locales) {
+            $setupPackage = "$PSScriptRoot\release\WinJockey_v${version}${suffix}.msi"
+            Copy-Item "$PSScriptRoot\release\$platform\$locale\Setup.msi" $setupPackage -Force
+            $setupPackages += $setupPackage
+        }
+    }
+
+    & "$PSScriptRoot\sign.ps1" $setupPackages
+}
