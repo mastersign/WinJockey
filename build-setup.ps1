@@ -22,7 +22,7 @@ $setupPlatforms = @(
 $suppressedPlatformSuffix = "AnyCPU"
 $excludeFiles = @(
     "*.deps.json"
-    #"*.pdb"
+    "*.pdb"
 )
 $framework = "net9.0-windows"
 $verbosity = "minimal"
