@@ -4,7 +4,7 @@
   <Package
       Name="WinJockey"
       Manufacturer="Tobias Kiertscher"
-      Version="1.0.0.0"
+      Version="1.0.1.0"
       Compressed="yes"
       UpgradeCode="ca4d92ae-8e5b-4377-acea-71c77098cba9"
   >
