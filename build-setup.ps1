@@ -1,4 +1,5 @@
 param (
+    [switch]$NoBuild,
     [switch]$NoSetupPackages
 )
 
@@ -23,6 +24,9 @@ $suppressedPlatformSuffix = "AnyCPU"
 $excludeFiles = @(
     "*.deps.json"
     "*.pdb"
+)
+$keepSubDirs = @(
+    "de"
 )
 $framework = "net9.0-windows"
 $verbosity = "minimal"
@@ -52,18 +56,35 @@ $target = "Clean;Build;Publish"
 $setupPackages = @()
 
 foreach ($platform in $platforms) {
-    & $msbuild $appProject `
-        /t:$target `
-        /p:Platform=$platform `
-        /p:Framework=$framework `
-        /p:Configuration=Release `
-        /p:PublishProfile=$platform `
-        /m /nodereuse:false `
-        /v:$verbosity
+    if (!$NoBuild) {
+        & $msbuild $appProject `
+            /t:$target `
+            /p:Platform=$platform `
+            /p:Framework=$framework `
+            /p:Configuration=Release `
+            /p:PublishProfile=$platform `
+            /m /nodereuse:false `
+            /v:$verbosity
+    }
 
     $pubDir = "$PSScriptRoot\publish\$platform"
     foreach ($pattern in $excludeFiles) {
         Get-ChildItem "$pubDir\$pattern" | Remove-Item
+    }
+    if ($platform -ne "AnyCPU") {
+        Get-ChildItem "$pubDir\*.runtimeconfig.json" | Remove-Item
+    }
+    foreach ($dir in (Get-ChildItem "$pubDir" -Directory)) {
+        $keep = $False
+        foreach ($subPath in $keepSubDirs) {
+            if ("$pubDir\$subPath" -eq $dir.FullName) {
+                $keep = $True
+                break
+            }
+        }
+        if (!$keep) {
+            $dir | Remove-Item -Recurse
+        }
     }
 }
 foreach ($platform in $zipPlatforms) {

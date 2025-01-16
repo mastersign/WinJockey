@@ -15,7 +15,7 @@
     <WebPage>https://www.mastersign.de</WebPage>
 
     <BaseOutputPath>..\bin</BaseOutputPath>
-    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
   </PropertyGroup>
