@@ -10,9 +10,9 @@ mqttServer:
 # The placeholder $MBC$ is replaced by the absolute path of the WinJockey config directory.
 defaultEditor:
   exe: '%SystemRoot%\system32\notepad.exe'
-  args: "$FILE$"
+  args: '"$FILE$"'
   # exe: '%ProgramFiles%\Visual Studio Code\Code.exe'
-  # args: --profile YAML "$WJC$" "$FILE$"
+  # args: '--profile YAML "$WJC$" "$FILE$"'
 
 # The default browser is used when opening a URL without setting the Browser property.
 # The placeholder $URL$ in the browser args is replaced by the URL.
