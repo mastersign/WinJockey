@@ -11,7 +11,7 @@
 
     <ProductName>WinJockey</ProductName>
     <Company>Tobias Kiertscher</Company>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <WebPage>https://www.mastersign.de</WebPage>
 
     <BaseOutputPath>..\bin</BaseOutputPath>
