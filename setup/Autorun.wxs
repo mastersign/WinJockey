@@ -1,0 +1,16 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="Autorun" Directory="INSTALLFOLDER">
+
+      <Component Id="AutorunRegistryEntry">
+        <RegistryValue Id="AutorunRegistryValue" KeyPath="true"
+            Root="HKCU"
+            Key="Software\Microsoft\Windows\CurrentVersion\Run"
+            Name="WinJockey"
+            Type="string"
+            Value="" />
+      </Component>
+    
+    </ComponentGroup>
+  </Fragment>
+</Wix>

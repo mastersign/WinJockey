@@ -36,6 +36,7 @@
 
       <ComponentGroupRef Id="ApplicationFiles" />
       <ComponentGroupRef Id="StartMenuEntries"/>
+      <ComponentGroupRef Id="Autorun"/>
     </Feature>
     
   </Package>
