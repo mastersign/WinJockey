@@ -1,39 +1,38 @@
-﻿#nullable enable
+﻿using System.Text.RegularExpressions;
 
-using System.Text.RegularExpressions;
-
-namespace Mastersign.WinJockey;
-
-partial class CommandConfiguration
+namespace Mastersign.WinJockey
 {
-    private string? lastKnownMqttBaseTopic = null;
-    private string? lastKnownMqttTopic = null;
-    private Regex? mqttTopicPattern = null;
-
-    public bool MatchesMqttTopic(string baseTopic, string topic)
+    partial class CommandConfiguration
     {
-        if (!string.Equals(baseTopic, lastKnownMqttBaseTopic) ||
-            !string.Equals(MqttTopic, lastKnownMqttTopic))
+        private string lastKnownMqttBaseTopic = null;
+        private string lastKnownMqttTopic = null;
+        private Regex mqttTopicPattern = null;
+
+        public bool MatchesMqttTopic(string baseTopic, string topic)
         {
-            mqttTopicPattern = new Regex(
-                "^" 
-                + Regex.Escape($"{baseTopic}{MqttTopic}")
-                    .Replace("\\+", "[^/]+")
-                    .Replace("#", ".*")
-                + "$",
-                RegexOptions.Compiled);
-            lastKnownMqttBaseTopic = baseTopic;
-            lastKnownMqttTopic = MqttTopic;
+            if (!string.Equals(baseTopic, lastKnownMqttBaseTopic) ||
+                !string.Equals(MqttTopic, lastKnownMqttTopic))
+            {
+                mqttTopicPattern = new Regex(
+                    "^" 
+                    + Regex.Escape($"{baseTopic}{MqttTopic}")
+                        .Replace("\\+", "[^/]+")
+                        .Replace("#", ".*")
+                    + "$",
+                    RegexOptions.Compiled);
+                lastKnownMqttBaseTopic = baseTopic;
+                lastKnownMqttTopic = MqttTopic;
+            }
+            return mqttTopicPattern != null && mqttTopicPattern.IsMatch(topic);
         }
-        return mqttTopicPattern != null && mqttTopicPattern.IsMatch(topic);
-    }
 
-    internal string Source { get; set; }
+        internal string Source { get; set; }
 
-    public string CommandName => System.IO.Path.GetFileNameWithoutExtension(Source ?? "unknown");
+        public string CommandName => System.IO.Path.GetFileNameWithoutExtension(Source ?? "unknown");
 
-    public override string ToString()
-    {
-        return $"{CommandName}: {Action}";
+        public override string ToString()
+        {
+            return $"{CommandName}: {Action}";
+        }
     }
 }

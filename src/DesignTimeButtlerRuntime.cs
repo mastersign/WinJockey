@@ -1,24 +1,26 @@
-﻿using System.Windows.Threading;
+﻿using System;
+using System.Windows.Threading;
 
-namespace Mastersign.WinJockey;
-
-public class DesignTimeWinJockeyRuntime : WinJockeyRuntime
+namespace Mastersign.WinJockey
 {
-    private readonly System.Timers.Timer debugTimer = new(500) { AutoReset = true };
-    private long n = 0;
-
-    public DesignTimeWinJockeyRuntime()
+    public class DesignTimeWinJockeyRuntime : WinJockeyRuntime
     {
-        Config = new WinJockeyConfiguration();
-        MqttConnection = new MqttConnection();
-        Dispatcher = Dispatcher.CurrentDispatcher;
+        private readonly System.Timers.Timer debugTimer = new System.Timers.Timer(500) { AutoReset = true };
+        private long n = 0;
 
-        debugTimer.Elapsed += delegate
+        public DesignTimeWinJockeyRuntime()
         {
-            n++;
-            var msg = $"MSG {n:000000} {DateTime.Now:F}";
-            ShowDebugMessage(msg);
-        };
-        debugTimer.Start();
+            Config = new WinJockeyConfiguration();
+            MqttConnection = new MqttConnection();
+            Dispatcher = Dispatcher.CurrentDispatcher;
+
+            debugTimer.Elapsed += delegate
+            {
+                n++;
+                var msg = $"MSG {n:000000} {DateTime.Now:F}";
+                ShowDebugMessage(msg);
+            };
+            debugTimer.Start();
+        }
     }
 }

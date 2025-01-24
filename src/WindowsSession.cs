@@ -1,35 +1,35 @@
-﻿#nullable enable
-
+﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Mastersign.WinJockey;
-
-public static class WindowsSession
+namespace Mastersign.WinJockey
 {
-    [DllImport("user32.dll", SetLastError = true)]
-    private static extern bool LockWorkStation();
-
-    public static void Lock()
+    public static class WindowsSession
     {
-        if (!LockWorkStation())
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool LockWorkStation();
+
+        public static void Lock()
         {
-            throw new Exception("LockWorkstation failed",
-                Marshal.GetExceptionForHR(Marshal.GetLastWin32Error()));
-        }
-    }
-
-    public static void RegisterSessionLockHandler(Action? lockHandler = null, Action? unlockHandler = null)
-    {
-        Microsoft.Win32.SystemEvents.SessionSwitch += (sender, ea) => {
-            switch (ea.Reason)
+            if (!LockWorkStation())
             {
-                case Microsoft.Win32.SessionSwitchReason.SessionLock:
-                    lockHandler?.Invoke();
-                    break;
-                case Microsoft.Win32.SessionSwitchReason.SessionUnlock:
-                    unlockHandler?.Invoke();
-                    break;
+                throw new Exception("LockWorkstation failed",
+                    Marshal.GetExceptionForHR(Marshal.GetLastWin32Error()));
             }
-        };
+        }
+
+        public static void RegisterSessionLockHandler(Action lockHandler = null, Action unlockHandler = null)
+        {
+            Microsoft.Win32.SystemEvents.SessionSwitch += (sender, ea) => {
+                switch (ea.Reason)
+                {
+                    case Microsoft.Win32.SessionSwitchReason.SessionLock:
+                        lockHandler?.Invoke();
+                        break;
+                    case Microsoft.Win32.SessionSwitchReason.SessionUnlock:
+                        unlockHandler?.Invoke();
+                        break;
+                }
+            };
+        }
     }
 }

@@ -1,39 +1,40 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 
-#nullable enable
-
-namespace Mastersign.WinJockey;
-
-internal static class FileHelper
+namespace Mastersign.WinJockey
 {
-    public static string RobustReadAllText(string filename, Encoding encoding, TimeSpan? timeout = null)
+    internal static class FileHelper
     {
-        timeout ??= TimeSpan.FromMilliseconds(250);
-        Exception? ex = null;
-        var sw = new Stopwatch();
-        sw.Start();
-        while (sw.Elapsed < timeout)
+        public static string RobustReadAllText(string filename, Encoding encoding, TimeSpan? timeout = null)
         {
-            try
+            if (!timeout.HasValue) timeout = TimeSpan.FromMilliseconds(250);
+            Exception ex = null;
+            var sw = new Stopwatch();
+            sw.Start();
+            while (sw.Elapsed < timeout)
             {
-                return File.ReadAllText(filename, encoding);
-            }
-            catch (IOException e)
-            {
-                ex = e;
-                if (e.HResult == -2147024864)
-                    Thread.Sleep(10);
-                else
+                try
                 {
-                    Debug.WriteLine($"{e.GetType().FullName}: {e.Message} [HRESULT={e.HResult}]");
-                    throw;
+                    return File.ReadAllText(filename, encoding);
+                }
+                catch (IOException e)
+                {
+                    ex = e;
+                    if (e.HResult == -2147024864)
+                        Thread.Sleep(10);
+                    else
+                    {
+                        Debug.WriteLine($"{e.GetType().FullName}: {e.Message} [HRESULT={e.HResult}]");
+                        throw;
+                    }
                 }
             }
+            sw.Stop();
+            if (ex != null) throw ex;
+            throw new TimeoutException();
         }
-        sw.Stop();
-        if (ex != null) throw ex;
-        throw new TimeoutException();
     }
 }

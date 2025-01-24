@@ -28,7 +28,7 @@ $excludeFiles = @(
 $keepSubDirs = @(
     "de"
 )
-$framework = "net9.0-windows"
+$framework = "net48"
 $verbosity = "minimal"
 $appProject = "$PSScriptRoot\src\Mastersign.WinJockey.csproj"
 $setupProject = "$PSScriptRoot\setup\Setup.wixproj"

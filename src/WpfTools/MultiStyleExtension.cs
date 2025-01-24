@@ -40,9 +40,15 @@ namespace Mastersign.WpfTools
                     var service = (IProvideValueTarget)serviceProvider.GetService(typeof(IProvideValueTarget));
                     key = service.TargetObject.GetType();
                 }
-                if (new StaticResourceExtension(key).ProvideValue(serviceProvider) is not Style currentStyle)
+                var extensionValue = new StaticResourceExtension(key).ProvideValue(serviceProvider);
+                if (extensionValue is Style currentStyle)
+                {
+                    resultStyle.Merge(currentStyle);
+                }
+                else
+                {
                     throw new InvalidOperationException("Could not find style with resource key " + currentResourceKey + ".");
-                resultStyle.Merge(currentStyle);
+                }
             }
             return resultStyle;
         }

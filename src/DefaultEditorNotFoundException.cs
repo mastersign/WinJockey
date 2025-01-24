@@ -1,12 +1,15 @@
-﻿namespace Mastersign.WinJockey;
+﻿using System;
 
-public class DefaultEditorNotFoundException : Exception
+namespace Mastersign.WinJockey
 {
-    public string EditorExecutable { get; private set; }
-
-    public DefaultEditorNotFoundException(string editorExecutable)
-        : base("Could not find the executable file of the default editor")
+    public class DefaultEditorNotFoundException : Exception
     {
-        EditorExecutable = editorExecutable;
+        public string EditorExecutable { get; private set; }
+
+        public DefaultEditorNotFoundException(string editorExecutable)
+            : base("Could not find the executable file of the default editor")
+        {
+            EditorExecutable = editorExecutable;
+        }
     }
 }

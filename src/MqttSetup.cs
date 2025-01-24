@@ -1,30 +1,31 @@
-﻿#nullable enable
+﻿using System;
 
-namespace Mastersign.WinJockey;
-
-partial class MqttSetup
+namespace Mastersign.WinJockey
 {
-    private string? lastKnownBaseTopic = null;
-    private string? expandedBaseTopic = null;
-
-    public string? ExpandedBaseTopic
+    partial class MqttSetup
     {
-        get
+        private string lastKnownBaseTopic = null;
+        private string expandedBaseTopic = null;
+
+        public string ExpandedBaseTopic
         {
-            if (!string.Equals(BaseTopic, lastKnownBaseTopic))
+            get
             {
-                if (BaseTopic is null)
+                if (!string.Equals(BaseTopic, lastKnownBaseTopic))
                 {
-                    expandedBaseTopic = null;
-                    lastKnownBaseTopic = null;
+                    if (BaseTopic is null)
+                    {
+                        expandedBaseTopic = null;
+                        lastKnownBaseTopic = null;
+                    }
+                    else
+                    {
+                        expandedBaseTopic = Environment.ExpandEnvironmentVariables(BaseTopic);
+                        lastKnownBaseTopic = BaseTopic;
+                    }
                 }
-                else
-                {
-                    expandedBaseTopic = Environment.ExpandEnvironmentVariables(BaseTopic);
-                    lastKnownBaseTopic = BaseTopic;
-                }
+                return expandedBaseTopic;
             }
-            return expandedBaseTopic;
         }
     }
 }

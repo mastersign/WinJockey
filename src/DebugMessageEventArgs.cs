@@ -1,14 +1,15 @@
-﻿#nullable enable
+﻿using System;
 
-namespace Mastersign.WinJockey;
-
-[Serializable]
-public class DebugMessageEventArgs : EventArgs
+namespace Mastersign.WinJockey
 {
-    public string Message { get; }
-
-    public DebugMessageEventArgs(string message)
+    [Serializable]
+    public class DebugMessageEventArgs : EventArgs
     {
-        Message = message;
+        public string Message { get; }
+
+        public DebugMessageEventArgs(string message)
+        {
+            Message = message;
+        }
     }
 }
