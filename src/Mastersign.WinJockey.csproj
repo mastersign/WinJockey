@@ -7,6 +7,7 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>App.ico</ApplicationIcon>
+    <StartupObject>Mastersign.WinJockey.Program</StartupObject>
 
     <ProductName>WinJockey</ProductName>
     <Company>Tobias Kiertscher</Company>
