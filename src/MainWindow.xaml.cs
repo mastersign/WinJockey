@@ -51,7 +51,7 @@ namespace Mastersign.WinJockey
         {
             SystemThemeWatcher.Watch(
                 this,                                  // Window class
-                WindowBackdropType.Auto,
+                WindowBackdropType.Mica,
                 updateAccents: true                    // Whether to change accents automatically
             );
         }
