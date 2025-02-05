@@ -1,6 +1,7 @@
 param (
     [switch]$NoBuild,
-    [switch]$NoSetupPackages
+    [switch]$NoSetupPackages,
+    [string]$Verbosity = "minimal"
 )
 
 $ErrorActionPreference = 'Stop'
@@ -29,7 +30,7 @@ $keepSubDirs = @(
     "de"
 )
 $framework = "net48"
-$verbosity = "minimal"
+$verbosity = $Verbosity
 $appProject = "$PSScriptRoot\src\Mastersign.WinJockey.csproj"
 $setupProject = "$PSScriptRoot\setup\Setup.wixproj"
 $setupPackageFile = "$PSScriptRoot\setup\Package.wxs"
@@ -51,14 +52,18 @@ $msbuildPaths = @(
     "${env:ProgramFiles(x86)}\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
 )
 $msbuild = $msbuildPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
-$target = "Clean;Build;Publish"
+$buildTargets = "Clean;Build;Publish"
+
+if (!(Test-Path "$PSScriptRoot\release")) {
+    mkdir "$PSScriptRoot\release" | Out-Null
+}
 
 $setupPackages = @()
 
 foreach ($platform in $platforms) {
     if (!$NoBuild) {
         & $msbuild $appProject `
-            /t:$target `
+            /t:$buildTargets `
             /p:Platform=$platform `
             /p:Framework=$framework `
             /p:Configuration=Release `
@@ -95,9 +100,11 @@ foreach ($platform in $zipPlatforms) {
 }
 
 if (!$NoSetupPackages) {
+    $setupTargets = "Restore;Build"
+
     foreach ($platform in $setupPlatforms) {
         & $msbuild $setupProject `
-            /t:Build `
+            /t:$setupTargets `
             /p:Platform=$platform `
             /p:Configuration=Release `
             /m /nodereuse:false `
