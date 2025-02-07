@@ -61,6 +61,15 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Commit: ähnelt.
+        /// </summary>
+        public static string CommitHash_Caption {
+            get {
+                return ResourceManager.GetString("CommitHash_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Product Name: ähnelt.
         /// </summary>
         public static string ProductName_Caption {

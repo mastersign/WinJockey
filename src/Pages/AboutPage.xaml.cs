@@ -29,8 +29,12 @@ namespace Mastersign.WinJockey.Pages
             InitializeProductInfo();
         }
 
-        private static string CleanUpVersion(string v)
-            => v.IndexOf('+') > 0 ? v.Substring(0, v.IndexOf('+')) : v;
+        private static string GetCommitHash(FileVersionInfo fvi)
+        {
+            var v = fvi.ProductVersion;
+            var p = v.IndexOf('+');
+            return p >= 0 ? v.Substring(p + 1) : string.Empty;
+        }
 
         private void InitializeProductInfo()
         {
@@ -38,7 +42,8 @@ namespace Mastersign.WinJockey.Pages
             var fvi = FileVersionInfo.GetVersionInfo(a.Location);
             tbProductName.Text = fvi.ProductName;
             tbPublisher.Text = fvi.CompanyName;
-            tbVersion.Text = CleanUpVersion(fvi.ProductVersion);
+            tbVersion.Text = $"{fvi.ProductMajorPart}.{fvi.ProductMinorPart}.{fvi.ProductBuildPart}";
+            tbCommitHash.Text = GetCommitHash(fvi);
             tbWebsite.Text = "https://www.mastersign.de";
             lnkWebsite.NavigateUri = "https://www.mastersign.de";
         }

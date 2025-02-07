@@ -19,6 +19,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -45,9 +46,15 @@
                    Text="Version" />
 
         <TextBlock Grid.Row="3" Style="{StaticResource Caption}"
+                   Text="{x:Static res:AboutPage.CommitHash_Caption}" />
+        <TextBlock x:Name="tbCommitHash"
+                   Grid.Row="3" Style="{StaticResource ListValue}"
+                   Text="Commit Hash" />
+
+        <TextBlock Grid.Row="4" Style="{StaticResource Caption}"
                    Text="{x:Static res:AboutPage.Website_Caption}" />
         <ui:HyperlinkButton x:Name="lnkWebsite"
-                            Grid.Row="3" Style="{StaticResource ListHyperlink}">
+                            Grid.Row="4" Style="{StaticResource ListHyperlink}">
             <TextBlock x:Name="tbWebsite" Margin="0,0,0,2"
                        Text="https://product-website.com" />
         </ui:HyperlinkButton>
