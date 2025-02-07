@@ -29,13 +29,16 @@ namespace Mastersign.WinJockey.Pages
             InitializeProductInfo();
         }
 
+        private static string CleanUpVersion(string v)
+            => v.IndexOf('+') > 0 ? v.Substring(0, v.IndexOf('+')) : v;
+
         private void InitializeProductInfo()
         {
             var a = Assembly.GetExecutingAssembly();
             var fvi = FileVersionInfo.GetVersionInfo(a.Location);
             tbProductName.Text = fvi.ProductName;
             tbPublisher.Text = fvi.CompanyName;
-            tbVersion.Text = fvi.ProductVersion;
+            tbVersion.Text = CleanUpVersion(fvi.ProductVersion);
             tbWebsite.Text = "https://www.mastersign.de";
             lnkWebsite.NavigateUri = "https://www.mastersign.de";
         }
