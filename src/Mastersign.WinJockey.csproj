@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>WinJockey</AssemblyName>
     <TargetFramework>net48</TargetFramework>
+    <LangVersion>12.0</LangVersion>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>App.ico</ApplicationIcon>
@@ -49,11 +50,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Mastersign.WpfCodeEditor" Version="1.0.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
-    <PackageReference Include="WPF-UI" Version="3.0.5" />
-    <PackageReference Include="WPF-UI.Tray" Version="3.0.5" />
-    <PackageReference Include="YamlDotNet" Version="16.2.1" />
+    <PackageReference Include="WPF-UI" Version="4.0.2" />
+    <PackageReference Include="WPF-UI.Tray" Version="4.0.2" />
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
   <ItemGroup>

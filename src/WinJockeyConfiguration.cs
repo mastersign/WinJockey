@@ -157,7 +157,8 @@ namespace Mastersign.WinJockey
             File.WriteAllText(targetFilePath, template, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         }
 
-        public void EditCommandConfiguration(CommandConfiguration command) => RunDefaultEditor(command.Source);
+        public void EditCommandConfiguration(CommandConfiguration command) => OpenInInternalEditor(
+                "WinJockey - " + command.CommandName, command.Source, "command");
 
         private void AsureConfiguration()
         {
@@ -185,6 +186,11 @@ namespace Mastersign.WinJockey
         {
             AsureConfiguration();
             RunDefaultEditor(Combine(SetupFile));
+        }
+
+        public void OpenInInternalEditor(string title, string filePath, string schema)
+        {
+            ConfigEditorWindow.ShowAsDialog(title, filePath, schema);
         }
 
         public void RunDefaultEditor(string filePath)
