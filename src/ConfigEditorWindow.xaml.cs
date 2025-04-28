@@ -27,6 +27,7 @@ public partial class ConfigEditorWindow : UI.FluentWindow
     public ConfigEditorWindow()
     {
         InitializeComponent();
+        editor.Visibility = Visibility.Hidden;
     }
 
     private static string GetTextResource(string path)
@@ -48,6 +49,9 @@ public partial class ConfigEditorWindow : UI.FluentWindow
             File.ReadAllText(filename, Encoding.UTF8),
             "yaml", 
             Path.GetFileName(filename));
+
+        editor.Visibility = Visibility.Visible;
+        editor.InvalidateVisual();
     }
 
     private async void WindowClosingHandler(object sender, CancelEventArgs e)

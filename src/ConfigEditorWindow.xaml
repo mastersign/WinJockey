@@ -25,8 +25,9 @@
         </ui:TitleBar>
         
         <ce:CodeEditor
-                x:Name="editor" 
+                x:Name="editor"
                 Grid.Row="1" Margin="4"
+                Background="{Binding Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ui:FluentWindow}}}"
                 EditorReady="EditorReadyHandler">
             <ce:CodeEditor.Configuration>
                 <ce:CodeEditorConfiguration 
