@@ -62,7 +62,7 @@
                 Title="{x:Static res:CommandsPage.DeleteDialog_Title}"
                 IsPrimaryButtonEnabled="True"
                 PrimaryButtonText="{x:Static res:Common.Yes}"
-                PrimaryButtonAppearance="Caution"
+                PrimaryButtonAppearance="Danger"
                 CloseButtonText="{x:Static res:Common.No}"
                 CloseButtonAppearance="Secondary">
             <TextBlock x:Name="TextBlockMessage" />
