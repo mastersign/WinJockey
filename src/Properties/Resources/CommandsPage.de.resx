@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action_Exec" xml:space="preserve">
+    <value>Programm starten</value>
+  </data>
+  <data name="Action_LockSession" xml:space="preserve">
+    <value>Sitzung sperren</value>
+  </data>
+  <data name="Action_MoveWindow" xml:space="preserve">
+    <value>Aktuelles Fenster verschieben</value>
+  </data>
+  <data name="Action_RebootSystem" xml:space="preserve">
+    <value>Neustarten</value>
+  </data>
+  <data name="Action_Shell" xml:space="preserve">
+    <value>Ausführen</value>
+  </data>
+  <data name="Action_ShutdownSystem" xml:space="preserve">
+    <value>Herunterfahren</value>
+  </data>
+  <data name="Action_SuspendSystem" xml:space="preserve">
+    <value>Standby</value>
+  </data>
+  <data name="Action_SwitchVirtualDesktop" xml:space="preserve">
+    <value>Virtuellen Desktop wechseln</value>
+  </data>
+  <data name="Action_Url" xml:space="preserve">
+    <value>Öffne URL</value>
+  </data>
+  <data name="Action_WakeOnLan" xml:space="preserve">
+    <value>Wake On LAN</value>
+  </data>
+  <data name="Action_WindowAction" xml:space="preserve">
+    <value>Aktuelles Fenster steuern</value>
+  </data>
   <data name="DeleteDialog_Message" xml:space="preserve">
     <value>Möchtest du den Befehl {0} wirklich löschen?</value>
   </data>
@@ -129,7 +162,10 @@
   <data name="List_Headline" xml:space="preserve">
     <value>Befehle</value>
   </data>
-  <data name="NewCommand_Caption" xml:space="preserve">
+  <data name="NewCommandAction_Caption" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="NewCommandName_Caption" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="NewCommand_Headline" xml:space="preserve">

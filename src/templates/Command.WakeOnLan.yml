@@ -1,0 +1,12 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: MyCommand
+
+# A command uses the `action` property to select the type of action
+action: WakeOnLan
+
+# Parameters for wake on LAN:
+mac: 00-00-00-00-00-00
+# subnet: 192.168.178.0/24
+
+# If the subnet is ommitted, the magic packet is send from all active interfaces;
+# otherwise only from interfaces with addresses from the given subnet.

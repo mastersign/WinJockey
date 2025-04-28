@@ -1,0 +1,10 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: Shutdown
+
+# A command uses the `action` property to select the type of action
+action: ShutdownSystem
+
+# Parameters for shutting down the system:
+shutdownMessage: The system is shut down by WinJockey
+shutdownTimeout: 10
+# shutdownForce: false

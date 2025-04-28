@@ -43,7 +43,8 @@ namespace Mastersign.WinJockey.Pages
 
         private void ButtonNewCommand_Click(object sender, RoutedEventArgs e)
         {
-            Runtime.Config.DeployTemplate("Command.yml", NewCommandFilename(TextBoxNewCommandName.Text));
+            var action = (ComboBoxNewCommandAction.SelectedItem as ComboBoxItem).Tag as string;
+            Runtime.Config.DeployTemplate($"Command.{action}.yml", NewCommandFilename(TextBoxNewCommandName.Text));
             TextBoxNewCommandName.Text = string.Empty;
             TextBoxNewCommandName.Focus();
         }

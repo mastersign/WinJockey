@@ -1,0 +1,8 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: VD1
+
+# A command uses the `action` property to select the type of action
+action: SwitchVirtualDesktop
+
+# Parameters for switching the virtual desktop:
+virtualDesktop: 0

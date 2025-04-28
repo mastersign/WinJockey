@@ -1,0 +1,5 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: LockSession
+
+# A command uses the `action` property to select the type of action
+action: LockSession

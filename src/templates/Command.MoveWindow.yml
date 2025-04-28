@@ -1,0 +1,15 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: MoveCurrentWindow
+
+# A command uses the `action` property to select the type of action
+action: MoveWindow
+
+# Parameters for moving the current window:
+virtualDesktop: 0
+screen: 0
+windowPosition:
+  x: 50
+  y: 0
+  w: 800
+  h: 600
+windowStyle: Normal  # Normal, Minimized, Maximized

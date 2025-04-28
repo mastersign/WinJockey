@@ -106,11 +106,29 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Setup Visual Studio Code as Editor ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Setup JSON schemas for Visual Studio Code ähnelt.
         /// </summary>
         public static string Command_SetupForVsCode {
             get {
                 return ResourceManager.GetString("Command_SetupForVsCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Command: {0} ähnelt.
+        /// </summary>
+        public static string EditCommand_Title_1 {
+            get {
+                return ResourceManager.GetString("EditCommand_Title_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Configuration ähnelt.
+        /// </summary>
+        public static string EditConfiguration_Title {
+            get {
+                return ResourceManager.GetString("EditConfiguration_Title", resourceCulture);
             }
         }
         

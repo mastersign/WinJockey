@@ -117,6 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action_Exec" xml:space="preserve">
+    <value>Execute program</value>
+  </data>
+  <data name="Action_LockSession" xml:space="preserve">
+    <value>Lock session</value>
+  </data>
+  <data name="Action_MoveWindow" xml:space="preserve">
+    <value>Move current window</value>
+  </data>
+  <data name="Action_RebootSystem" xml:space="preserve">
+    <value>Reboot system</value>
+  </data>
+  <data name="Action_Shell" xml:space="preserve">
+    <value>Shell call</value>
+  </data>
+  <data name="Action_ShutdownSystem" xml:space="preserve">
+    <value>Shutdown system</value>
+  </data>
+  <data name="Action_SuspendSystem" xml:space="preserve">
+    <value>Suspend system</value>
+  </data>
+  <data name="Action_SwitchVirtualDesktop" xml:space="preserve">
+    <value>Switch virtual desktop</value>
+  </data>
+  <data name="Action_Url" xml:space="preserve">
+    <value>Open URL</value>
+  </data>
+  <data name="Action_WakeOnLan" xml:space="preserve">
+    <value>Wake on LAN</value>
+  </data>
+  <data name="Action_WindowAction" xml:space="preserve">
+    <value>Control current window</value>
+  </data>
   <data name="DeleteDialog_Message" xml:space="preserve">
     <value>Do you really want to delete the command {0}?</value>
   </data>
@@ -129,7 +162,10 @@
   <data name="List_Headline" xml:space="preserve">
     <value>Commands</value>
   </data>
-  <data name="NewCommand_Caption" xml:space="preserve">
+  <data name="NewCommandAction_Caption" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="NewCommandName_Caption" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="NewCommand_Headline" xml:space="preserve">

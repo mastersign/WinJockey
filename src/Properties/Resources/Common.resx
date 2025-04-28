@@ -133,7 +133,13 @@
     <value>Open configuration folder</value>
   </data>
   <data name="Command_SetupForVsCode" xml:space="preserve">
-    <value>Setup Visual Studio Code as Editor</value>
+    <value>Setup JSON schemas for Visual Studio Code</value>
+  </data>
+  <data name="EditCommand_Title_1" xml:space="preserve">
+    <value>Edit Command: {0}</value>
+  </data>
+  <data name="EditConfiguration_Title" xml:space="preserve">
+    <value>Edit Configuration</value>
   </data>
   <data name="EditorNotFound_Message" xml:space="preserve">
     <value>Could not find the executable of the default editor.</value>

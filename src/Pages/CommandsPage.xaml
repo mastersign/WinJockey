@@ -82,17 +82,37 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock
+                Grid.Column="0"
                 Style="{StaticResource Caption}"
-                Text="{x:Static res:CommandsPage.NewCommand_Caption}" />
+                Text="{x:Static res:CommandsPage.NewCommandName_Caption}" />
             <TextBox
                 x:Name="TextBoxNewCommandName"
-                Grid.Column="1" Margin="12,0,4,0" 
+                Grid.Column="1" Margin="12,0,12,0" 
                 TextChanged="TextBoxNewCommandName_TextChanged"/>
+            <TextBlock
+                Grid.Column="2"
+                Style="{StaticResource Caption}"
+                Text="{x:Static res:CommandsPage.NewCommandAction_Caption}" />
+            <ComboBox
+                x:Name="ComboBoxNewCommandAction"
+                Grid.Column="3" Margin="12,0,4,0">
+                <ComboBoxItem Tag="Exec" Content="{x:Static res:CommandsPage.Action_Exec}" />
+                <ComboBoxItem Tag="Shell" Content="{x:Static res:CommandsPage.Action_Shell}" />
+                <ComboBoxItem Tag="WindowAction" Content="{x:Static res:CommandsPage.Action_WindowAction}" />
+                <ComboBoxItem Tag="MoveWindow" Content="{x:Static res:CommandsPage.Action_MoveWindow}" />
+                <ComboBoxItem Tag="SwitchVirtualDesktop" Content="{x:Static res:CommandsPage.Action_SwitchVirtualDesktop}" />
+                <ComboBoxItem Tag="LockSession" Content="{x:Static res:CommandsPage.Action_LockSession}" />
+                <ComboBoxItem Tag="SuspendSystem" Content="{x:Static res:CommandsPage.Action_SuspendSystem}" />
+                <ComboBoxItem Tag="ShutdownSystem" Content="{x:Static res:CommandsPage.Action_ShutdownSystem}" />
+                <ComboBoxItem Tag="ShutdownSystem" Content="{x:Static res:CommandsPage.Action_ShutdownSystem}" />
+            </ComboBox>
             <ui:Button
                 x:Name="ButtonNewCommand"
-                Grid.Column="2" VerticalAlignment="Stretch"
+                Grid.Column="4" VerticalAlignment="Stretch"
                 Click="ButtonNewCommand_Click">
                 <ui:SymbolIcon Symbol="Add20" />
             </ui:Button>

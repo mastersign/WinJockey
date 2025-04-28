@@ -42,6 +42,15 @@
                 Style="{StaticResource Caption}"
                 Text="{Binding Config.RealPath}" />
             <ui:Button
+                x:Name="ButtonEditSetup"
+                Margin="0,8,0,0"
+                Command="local:Commands.EditSetup"
+                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                <ui:Button.Icon>
+                    <ui:SymbolIcon Symbol="EditSettings20" />
+                </ui:Button.Icon>
+            </ui:Button>
+            <ui:Button
                 x:Name="ButtonOpenConfigurationDirectory"
                 Margin="0,8,0,0"
                 Command="local:Commands.OpenConfigurationDirectory"
@@ -57,15 +66,6 @@
                 Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
                 <ui:Button.Icon>
                     <ui:SymbolIcon Symbol="Code20" />
-                </ui:Button.Icon>
-            </ui:Button>
-            <ui:Button
-                x:Name="ButtonEditSetup"
-                Margin="0,8,0,0"
-                Command="local:Commands.EditSetup"
-                Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
-                <ui:Button.Icon>
-                    <ui:SymbolIcon Symbol="EditSettings20" />
                 </ui:Button.Icon>
             </ui:Button>
 

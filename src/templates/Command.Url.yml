@@ -1,0 +1,9 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: MyCommand
+
+# A command uses the `action` property to select the type of action
+action: Url
+
+# Parameters for opening a URL:
+url: https://www.mastersign.de
+# browser: NewWindow

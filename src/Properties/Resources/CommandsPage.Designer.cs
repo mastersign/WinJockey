@@ -61,6 +61,105 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Execute program ähnelt.
+        /// </summary>
+        public static string Action_Exec {
+            get {
+                return ResourceManager.GetString("Action_Exec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lock session ähnelt.
+        /// </summary>
+        public static string Action_LockSession {
+            get {
+                return ResourceManager.GetString("Action_LockSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Move current window ähnelt.
+        /// </summary>
+        public static string Action_MoveWindow {
+            get {
+                return ResourceManager.GetString("Action_MoveWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reboot system ähnelt.
+        /// </summary>
+        public static string Action_RebootSystem {
+            get {
+                return ResourceManager.GetString("Action_RebootSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Shell call ähnelt.
+        /// </summary>
+        public static string Action_Shell {
+            get {
+                return ResourceManager.GetString("Action_Shell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Shutdown system ähnelt.
+        /// </summary>
+        public static string Action_ShutdownSystem {
+            get {
+                return ResourceManager.GetString("Action_ShutdownSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suspend system ähnelt.
+        /// </summary>
+        public static string Action_SuspendSystem {
+            get {
+                return ResourceManager.GetString("Action_SuspendSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Switch virtual desktop ähnelt.
+        /// </summary>
+        public static string Action_SwitchVirtualDesktop {
+            get {
+                return ResourceManager.GetString("Action_SwitchVirtualDesktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open URL ähnelt.
+        /// </summary>
+        public static string Action_Url {
+            get {
+                return ResourceManager.GetString("Action_Url", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wake on LAN ähnelt.
+        /// </summary>
+        public static string Action_WakeOnLan {
+            get {
+                return ResourceManager.GetString("Action_WakeOnLan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Control current window ähnelt.
+        /// </summary>
+        public static string Action_WindowAction {
+            get {
+                return ResourceManager.GetString("Action_WindowAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Do you really want to delete the command {0}? ähnelt.
         /// </summary>
         public static string DeleteDialog_Message {
@@ -97,20 +196,29 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
-        /// </summary>
-        public static string NewCommand_Caption {
-            get {
-                return ResourceManager.GetString("NewCommand_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die New Command ähnelt.
         /// </summary>
         public static string NewCommand_Headline {
             get {
                 return ResourceManager.GetString("NewCommand_Headline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Action ähnelt.
+        /// </summary>
+        public static string NewCommandAction_Caption {
+            get {
+                return ResourceManager.GetString("NewCommandAction_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string NewCommandName_Caption {
+            get {
+                return ResourceManager.GetString("NewCommandName_Caption", resourceCulture);
             }
         }
     }

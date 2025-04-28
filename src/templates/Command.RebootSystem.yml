@@ -1,0 +1,10 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: Reboot
+
+# A command uses the `action` property to select the type of action
+action: RebootSystem
+
+# Parameters for rebooting the system:
+shutdownMessage: The system is restarted by WinJockey
+shutdownTimeout: 10
+# shutdownForce: false

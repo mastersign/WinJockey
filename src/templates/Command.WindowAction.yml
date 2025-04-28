@@ -1,0 +1,13 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: MinimizeCurrentWindow
+
+# A command uses the `action` property to select the type of action
+action: MinimizeWindow
+
+# Window actions:
+# - MinimizeWindow
+# - NormalWindow
+# - MaximizeWindow
+# - CloseWindow
+# - PinWindow
+# - UnpinWindow

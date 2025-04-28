@@ -133,7 +133,13 @@
     <value>Konfigurationsverzeichnis öffnen</value>
   </data>
   <data name="Command_SetupForVsCode" xml:space="preserve">
-    <value>Visual Studio Code als Editor konfigurieren</value>
+    <value>JSON-Schemata für Visual Studio Code einrichten</value>
+  </data>
+  <data name="EditCommand_Title_1" xml:space="preserve">
+    <value>Befehl bearbeiten: {0}</value>
+  </data>
+  <data name="EditConfiguration_Title" xml:space="preserve">
+    <value>Konfiguration bearbeiten</value>
   </data>
   <data name="EditorNotFound_Message" xml:space="preserve">
     <value>Die ausführbare Datei des Standardeditors wurde nicht gefunden.</value>

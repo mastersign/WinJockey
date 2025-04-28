@@ -1,0 +1,24 @@
+﻿# The relative MQTT topic to react to
+mqttTopic: MyCommand
+
+# A command uses the `action` property to select the type of action
+action: Exec
+
+# Parameters for Exec calls:
+cmd: python
+cmdArgs: -m http.server
+workingDir: '%UserProfile%\www'
+
+# In cmd, cmdArgs and workingDir environment variables in CMD syntax are replaced.
+
+# In cmd, cmdArgs and workingDir $WSD$ is replaced by the unquoted absolute path
+# of the most recent directory, presented in the Windows Explorer.
+
+# In cmdArgs $WSS$ is replaced by the double-quoted absolute path
+# of the first selected file or directory in the most recently used Windows Explorer window.
+# In cmdArgs $WSSS$ is replaced by a whitespace separated list of
+# absolute paths of all selected files and directories in the most recently used Windows Explorer window.
+
+# Only Explorer windows which are still open can be factored in.
+
+# In cmd, cmdArgs and workingDir $WJC$ is replaced by the absolute path of the WinJockey config directory.
