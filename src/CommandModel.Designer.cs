@@ -7,7 +7,7 @@ namespace Mastersign.WinJockey
 {
     #region Scaleton Model Designer generated code
     
-    // Scaleton Version: 0.3.0
+    // Scaleton Version: 0.3.2
     
     public enum ActionType
     {
@@ -236,38 +236,6 @@ namespace Mastersign.WinJockey
         
         #endregion
         
-        #region Property DefaultBrowser
-        
-        private ProcessStart _defaultBrowser;
-        
-        public event EventHandler DefaultBrowserChanged;
-        
-        protected virtual void OnDefaultBrowserChanged()
-        {
-            EventHandler handler = DefaultBrowserChanged;
-            if (!ReferenceEquals(handler, null))
-            {
-                handler(this, EventArgs.Empty);
-            }
-            this.OnPropertyChanged(@"DefaultBrowser");
-        }
-        
-        public virtual ProcessStart DefaultBrowser
-        {
-            get { return _defaultBrowser; }
-            set
-            {
-                if ((value == _defaultBrowser))
-                {
-                    return;
-                }
-                _defaultBrowser = value;
-                this.OnDefaultBrowserChanged();
-            }
-        }
-        
-        #endregion
-        
         #region Property Browsers
         
         private global::System.Collections.Generic.Dictionary<System.String,ProcessStart> _browsers;
@@ -300,33 +268,33 @@ namespace Mastersign.WinJockey
         
         #endregion
         
-        #region Property DefaultEditor
+        #region Property Editor
         
-        private ProcessStart _defaultEditor;
+        private ProcessStart _editor;
         
-        public event EventHandler DefaultEditorChanged;
+        public event EventHandler EditorChanged;
         
-        protected virtual void OnDefaultEditorChanged()
+        protected virtual void OnEditorChanged()
         {
-            EventHandler handler = DefaultEditorChanged;
+            EventHandler handler = EditorChanged;
             if (!ReferenceEquals(handler, null))
             {
                 handler(this, EventArgs.Empty);
             }
-            this.OnPropertyChanged(@"DefaultEditor");
+            this.OnPropertyChanged(@"Editor");
         }
         
-        public virtual ProcessStart DefaultEditor
+        public virtual ProcessStart Editor
         {
-            get { return _defaultEditor; }
+            get { return _editor; }
             set
             {
-                if ((value == _defaultEditor))
+                if ((value == _editor))
                 {
                     return;
                 }
-                _defaultEditor = value;
-                this.OnDefaultEditorChanged();
+                _editor = value;
+                this.OnEditorChanged();
             }
         }
         
@@ -337,7 +305,9 @@ namespace Mastersign.WinJockey
     {
         public MqttSetup()
         {
+            this._host = DEF_HOST;
             this._port = DEF_PORT;
+            this._baseTopic = DEF_BASETOPIC;
         }
         
         #region Change Tracking
@@ -371,6 +341,9 @@ namespace Mastersign.WinJockey
             this.OnPropertyChanged(@"Host");
         }
         
+        private const string DEF_HOST = @"127.0.0.1";
+        
+        [DefaultValue(DEF_HOST)]
         public virtual string Host
         {
             get { return _host; }
@@ -438,6 +411,9 @@ namespace Mastersign.WinJockey
             this.OnPropertyChanged(@"BaseTopic");
         }
         
+        private const string DEF_BASETOPIC = @"WinJockey/";
+        
+        [DefaultValue(DEF_BASETOPIC)]
         public virtual string BaseTopic
         {
             get { return _baseTopic; }

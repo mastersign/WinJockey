@@ -92,7 +92,7 @@ namespace Mastersign.WinJockey
             => GetDirectoryPathFromShellLocation(shellHook?.GetCurrentLocation());
 
         public static string ExpandWinJockeyConfigLocation(string s, string winJockeyConfigRoot)
-            => s.Replace("$WJC$", winJockeyConfigRoot);
+            => s.Replace("$ROOT$", winJockeyConfigRoot);
 
     }
 }

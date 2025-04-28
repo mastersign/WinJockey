@@ -1,8 +1,4 @@
-﻿$schema: https://winjockey.mastersign.de/command.schema.json
-
-# Command Configuration
-
-# The relative MQTT topic to react to
+﻿# The relative MQTT topic to react to
 mqttTopic: MyCommand
 
 # A command uses the `action` property to select the type of action

@@ -212,7 +212,11 @@ namespace Mastersign.WinJockey
         {
             var setup = Config.Setup;
             var url = new Uri(command.Url, UriKind.Absolute).AbsoluteUri;
-            var browser = setup.DefaultBrowser;
+            ProcessStart browser = null;
+            if (setup.Browsers != null &&
+                setup.Browsers.TryGetValue("Default", out var defBrowser)) {
+                browser = defBrowser;
+            }
             if (!string.IsNullOrEmpty(command.Browser) &&
                 setup.Browsers != null &&
                 setup.Browsers.TryGetValue(command.Browser, out var altBrowser))
@@ -225,7 +229,7 @@ namespace Mastersign.WinJockey
             if (browserExe != null && File.Exists(browserExe))
             {
                 Process.Start(browserExe,
-                    string.IsNullOrWhiteSpace(browser?.Args)
+                    string.IsNullOrWhiteSpace(browser.Args)
                         ? url
                         : Environment.ExpandEnvironmentVariables(browser.Args).Replace("$URL$", url));
             }

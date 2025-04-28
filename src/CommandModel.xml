@@ -31,17 +31,20 @@
 
     <Class name="WinJockeySetup">
       <Property name="MqttServer" type="MqttSetup" />
-      <Property name="DefaultBrowser" type="ProcessStart" />
       <Property name="Browsers" type="BrowserDict" />
-      <Property name="DefaultEditor" type="ProcessStart" />
+      <Property name="Editor" type="ProcessStart" />
     </Class>
 
     <Class name="MqttSetup">
-      <Property name="Host" />
+      <Property name="Host">
+        <DefaultValue>127.0.0.1</DefaultValue>
+      </Property>
       <Property name="Port" type="ushort">
         <DefaultValue>1883</DefaultValue>
       </Property>
-      <Property name="BaseTopic" />
+      <Property name="BaseTopic">
+        <DefaultValue>WinJockey/</DefaultValue>
+      </Property>
     </Class>
 
     <Class name="ProcessStart">

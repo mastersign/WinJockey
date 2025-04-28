@@ -157,8 +157,10 @@ namespace Mastersign.WinJockey
             File.WriteAllText(targetFilePath, template, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         }
 
-        public void EditCommandConfiguration(CommandConfiguration command) => OpenInInternalEditor(
-                "WinJockey - " + command.CommandName, command.Source, "command");
+        public void EditCommandConfiguration(CommandConfiguration command) 
+            => OpenInConfigEditor(
+                 string.Format(Properties.Resources.Common.EditCommand_Title_1, command.CommandName),
+                 command.Source, "command");
 
         private void AsureConfiguration()
         {
@@ -185,19 +187,16 @@ namespace Mastersign.WinJockey
         public void EditSetup()
         {
             AsureConfiguration();
-            RunDefaultEditor(Combine(SetupFile));
+            OpenInConfigEditor(
+                Properties.Resources.Common.EditConfiguration_Title, 
+                Combine(SetupFile), "setup");
         }
 
-        public void OpenInInternalEditor(string title, string filePath, string schema)
+        public void OpenInConfigEditor(string title, string filePath, string schema)
         {
-            ConfigEditorWindow.ShowAsDialog(title, filePath, schema);
-        }
-
-        public void RunDefaultEditor(string filePath)
-        {
-            var editorCmd = Setup.DefaultEditor?.Exe;
-            var args = Setup.DefaultEditor?.Args;
-            if (!string.IsNullOrWhiteSpace(editorCmd))
+            var editorCmd = Setup.Editor?.Exe;
+            var args = Setup.Editor?.Args;
+            if (!string.IsNullOrWhiteSpace(editorCmd) && File.Exists(editorCmd))
             {
                 editorCmd = StringExpander.ExpandWinJockeyConfigLocation(editorCmd, RealPath);
                 editorCmd = Environment.ExpandEnvironmentVariables(editorCmd);
@@ -211,19 +210,12 @@ namespace Mastersign.WinJockey
                 {
                     args = '"' + filePath + '"';
                 }
+                Process.Start(new ProcessStartInfo(editorCmd, args));
             }
             else
             {
-                editorCmd = Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.System),
-                    "Notepad.exe");
-                args = '"' + filePath + '"';
+                ConfigEditorWindow.ShowAsDialog("WinJockey - " + title, filePath, schema);
             }
-            if (!File.Exists(editorCmd))
-            {
-                throw new DefaultEditorNotFoundException(editorCmd);
-            }
-            Process.Start(new ProcessStartInfo(editorCmd, args));
         }
 
         public async Task SetupVisualStudioCodeSettings()
@@ -234,7 +226,9 @@ namespace Mastersign.WinJockey
             var schemaDir = Combine(vscodeDir, "schemas");
             if (!Directory.Exists(schemaDir)) { Directory.CreateDirectory(schemaDir); }
             var commandSchemaPath = Combine(schemaDir, "command.schema.json");
+            var setupSchemaPath = Combine(schemaDir, "setup.schema.json");
             await WriteOutResource("command.schema.json", commandSchemaPath);
+            await WriteOutResource("setup.schema.json", setupSchemaPath);
             var settingsFile = Combine(vscodeDir, "settings.json");
             if (!File.Exists(settingsFile)) await WriteOutResource("vscode.settings.json", settingsFile);
         }

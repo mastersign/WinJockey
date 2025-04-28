@@ -1,0 +1,81 @@
+{
+    "$id": "https://winjockey.mastersign.de/setup.schema.json",
+
+    "title": "WinJockey Configuration",
+    "description": "The WinJockey configuration",
+
+    "properties": {
+
+        "mqttServer": {
+            "title": "MQTT Server",
+            "description": "Configures the connection to the MQTT server",
+            "type": "object",
+            "properties": {
+                "host": {
+                    "title": "Host Address",
+                    "description": "The IP address or hostname of the MQTT server",
+                    "type": "string",
+                    "default": "127.0.0.1"
+                },
+                "port": {
+                    "title": "Port",
+                    "description": "The port of the MQTT server",
+                    "type": "number",
+                    "default": 1883
+                },
+                "baseTopic": {
+                    "title": "Base Topic",
+                    "description": "The base MQTT topic is prepended to the topics of the commands.\n\nEnvironment variables in CMD syntax are expanded.",
+                    "type": "string",
+                    "default": "WinJockey/"
+                }
+            }
+        },
+
+        "editor": {
+            "title": "Custom Editor",
+            "description": "Overrides the internal editor for configuration files with an external one",
+            "type": "object",
+            "properties": {
+                "exe": {
+                    "title": "Editor Executable",
+                    "description": "A path to the editor executable.\n\nEnvironment variables in CMD syntax - e.g. %ProgramFiles% - are expanded.",
+                    "type": "string"
+                },
+                "args": {
+                    "title": "Command Line Arguments",
+                    "description": "The command line arguments for the editor.\n\nThe placeholder $FILE$ is replaced by an absolute path of the config file.\nThe placeholder $ROOT$ is replaced by an absolute path of the config directory.\nEnvironment variables in CMD syntax are expanded.",
+                    "type": "string",
+                    "default": "'\"$FILE$\"'"
+                }
+            },
+            "required": ["exe"]
+        },
+
+        "browsers": {
+            "title": "Web Browsers",
+            "description": "A map of web browsers for opening URLs.\n\nUse the key \"Default\" to override the system default browser.",
+            "type": "object",
+            "additionalProperties": {
+                "title": "Custom Web Browser",
+                "description": "The definition for a custom web browser",
+                "type": "object",
+                "properties": {
+                    "exe": {
+                        "title": "Browser Executable",
+                        "description": "A path to the browser executable.\n\nEnvironment variables in CMD syntax - e.g. %ProgramFiles% - are expanded.",
+                        "type": "string"
+                    },
+                    "args": {
+                        "title": "Command Line Arguments",
+                        "description": "The command line arguments for the browser.\n\nThe placeholder $URL$ is replaced by the URL from the command.\nEnvironment variables in CMD syntax are expanded.",
+                        "type": "string",
+                        "default": "'$URL$'"
+                    }
+                },
+                "required": ["exe"]
+            }
+        }
+
+    }
+}

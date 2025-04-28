@@ -2,6 +2,9 @@
   "yaml.schemas": {
     "./.vscode/schemas/command.schema.json": [
       "commands/*.yml"
+    ],
+    "./.vscode/schemas/setup.schema.json": [
+      "setup.yml"
     ]
   }
 }
