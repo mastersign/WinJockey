@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using Wpf.Ui;
 
 namespace Mastersign.WinJockey
 {
@@ -13,6 +14,8 @@ namespace Mastersign.WinJockey
         private readonly WinJockeyRuntime runtime;
 
         public WinJockeyRuntime Runtime => runtime;
+
+        public ContentDialogService Dialogs { get; } = new ContentDialogService();
 
         public App()
         {

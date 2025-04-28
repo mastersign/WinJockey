@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using UI = Wpf.Ui.Controls;
 
 namespace Mastersign.WinJockey.Pages
 {
@@ -87,15 +78,15 @@ namespace Mastersign.WinJockey.Pages
             }
         }
 
-        private void ButtonDeleteCommand_Click(object sender, RoutedEventArgs e)
+        private async void ButtonDeleteCommand_Click(object sender, RoutedEventArgs e)
         {
             var command = (CommandConfiguration)((FrameworkElement)e.Source).Tag;
-            var confirmationResult = System.Windows.MessageBox.Show(
-                string.Format(Properties.Resources.CommandsPage.DeleteDialog_Message, command.CommandName),
-                Properties.Resources.CommandsPage.DeleteDialog_Title,
-                System.Windows.MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
-            if (confirmationResult != System.Windows.MessageBoxResult.Yes) return;
+
+            var dlg = FindResource("DeleteConfirmationDialog") as UI.ContentDialog;
+            var msgTextBlock = dlg.Content as TextBlock;
+            msgTextBlock.Text = string.Format(Properties.Resources.CommandsPage.DeleteDialog_Message, command.CommandName);
+            var result = await (App.Current as App).Dialogs.ShowAsync(dlg, CancellationToken.None);
+            if (result != UI.ContentDialogResult.Primary) return;
 
             File.Delete(command.Source);
         }

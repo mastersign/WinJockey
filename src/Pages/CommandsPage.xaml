@@ -15,10 +15,9 @@
     d:DataContext="{d:DesignInstance Type=local:DesignTimeWinJockeyRuntime, IsDesignTimeCreatable=True}"
     d:DesignHeight="450" d:DesignWidth="600"
     >
-    
+
     <Page.Resources>
-        <DataTemplate
-            x:Key="CommandConfigurationTemplate">
+        <DataTemplate x:Key="CommandConfigurationTemplate">
             <Grid Margin="12,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
@@ -57,8 +56,20 @@
                 </ui:Button>
             </Grid>
         </DataTemplate>
-    </Page.Resources>
 
+        <ui:ContentDialog
+                x:Key="DeleteConfirmationDialog"
+                Title="{x:Static res:CommandsPage.DeleteDialog_Title}"
+                IsPrimaryButtonEnabled="True"
+                PrimaryButtonText="{x:Static res:Common.Yes}"
+                PrimaryButtonAppearance="Caution"
+                CloseButtonText="{x:Static res:Common.No}"
+                CloseButtonAppearance="Secondary">
+            <TextBlock x:Name="TextBlockMessage" />
+        </ui:ContentDialog>
+
+    </Page.Resources>
+    
     <StackPanel
         Margin="0,0,12,0">
 

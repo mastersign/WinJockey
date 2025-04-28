@@ -110,6 +110,8 @@
             </ui:NavigationView.FooterMenuItems>
         </ui:NavigationView>
 
+        <ContentPresenter x:Name="dialogPresenter" Grid.Row="1" />
+
         <tray:NotifyIcon
                     Grid.Row="0"
                     Icon="{StaticResource LogoImage}"
