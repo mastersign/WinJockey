@@ -108,7 +108,7 @@
                 <ComboBoxItem Tag="LockSession" Content="{x:Static res:CommandsPage.Action_LockSession}" />
                 <ComboBoxItem Tag="SuspendSystem" Content="{x:Static res:CommandsPage.Action_SuspendSystem}" />
                 <ComboBoxItem Tag="ShutdownSystem" Content="{x:Static res:CommandsPage.Action_ShutdownSystem}" />
-                <ComboBoxItem Tag="ShutdownSystem" Content="{x:Static res:CommandsPage.Action_ShutdownSystem}" />
+                <ComboBoxItem Tag="RebootSystem" Content="{x:Static res:CommandsPage.Action_RebootSystem}" />
             </ComboBox>
             <ui:Button
                 x:Name="ButtonNewCommand"
