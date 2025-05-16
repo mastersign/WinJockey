@@ -1,0 +1,15 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    
+    <ComponentGroup Id="ApplicationFiles">
+      <Files Directory="INSTALLFOLDER" Include="!(bindpath.bin)\*">
+        <Exclude Files="*.pdb" />
+      </Files>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ApplicationLocalization_de">
+      <Files Directory="INSTALLFOLDER" Subdirectory="de" Include="!(bindpath.bin)\de\*.dll" />
+    </ComponentGroup>
+    
+  </Fragment>
+</Wix>

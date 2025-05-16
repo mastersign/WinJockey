@@ -16,7 +16,6 @@
     <Icon Id="WinJockey.ico" SourceFile="Icon.ico" />
     <Property Id="ARPPRODUCTICON" Value="WinJockey.ico" />
 
-
     <!-- UI Resources -->
     <WixVariable Id="WixUILicenseRtf" Value="LICENSE.rtf" />
     <WixVariable Id="WixUIBannerBmp" Value="Banner.bmp" />
@@ -35,6 +34,8 @@
              AllowAdvertise="no">
 
       <ComponentGroupRef Id="ApplicationFiles" />
+      <ComponentGroupRef Id="ApplicationLocalization_de" />
+      
       <ComponentGroupRef Id="StartMenuEntries"/>
       <ComponentGroupRef Id="Autorun"/>
     </Feature>

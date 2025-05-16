@@ -1,4 +1,4 @@
-﻿<Project Sdk="WixToolset.Sdk/5.0.2">
+﻿<Project Sdk="WixToolset.Sdk/6.0.0">
   <!--
   <PropertyGroup>
     <SignOutput>true</SignOutput>
@@ -16,16 +16,12 @@
     <OutputPath>..\release\x86</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WixToolset.Heat" Version="5.*" />
-    <PackageReference Include="WixToolset.UI.wixext" Version="5.*" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\Mastersign.WinJockey.csproj" />
-    <HarvestDirectory Include="..\publish\$(Platform)">
-      <ComponentGroupName>ApplicationFiles</ComponentGroupName>
-      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
-      <SuppressRootDirectory>true</SuppressRootDirectory>
-    </HarvestDirectory>
-    <BindPath Include="..\publish\$(Platform)" />
+    <BindPath Include="..\publish\$(Platform)">
+      <BindName>bin</BindName>
+    </BindPath>
   </ItemGroup>
 </Project>
