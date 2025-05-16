@@ -20,6 +20,7 @@ namespace Mastersign.WinJockey
         public App()
         {
             Exit += ExitHandler;
+            DispatcherUnhandledException += DispatcherUnhandledExceptionHandler;
 
             config = new WinJockeyConfiguration
             {
@@ -38,6 +39,12 @@ namespace Mastersign.WinJockey
 
             runtime.MqttConnection = mqttConnection;
             runtime.DebugMessage += DebugMessageHandler;
+        }
+
+        private void DispatcherUnhandledExceptionHandler(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            mqttConnection.Dispose();
+            e.Handled = false;
         }
 
         private void ExitHandler(object sender, ExitEventArgs e)
