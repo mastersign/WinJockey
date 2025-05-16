@@ -196,10 +196,13 @@ namespace Mastersign.WinJockey
         {
             var editorCmd = Setup.Editor?.Exe;
             var args = Setup.Editor?.Args;
-            if (!string.IsNullOrWhiteSpace(editorCmd) && File.Exists(editorCmd))
+            if (editorCmd is not null)
             {
                 editorCmd = StringExpander.ExpandWinJockeyConfigLocation(editorCmd, RealPath);
                 editorCmd = Environment.ExpandEnvironmentVariables(editorCmd);
+            }
+            if (!string.IsNullOrWhiteSpace(editorCmd) && File.Exists(editorCmd))
+            {
                 if (!string.IsNullOrWhiteSpace(args))
                 {
                     args = StringExpander.ExpandWinJockeyConfigLocation(args, RealPath);
