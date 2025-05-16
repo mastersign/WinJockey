@@ -4,14 +4,56 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using UI = Wpf.Ui.Controls;
 
 namespace Mastersign.WinJockey;
 
 public partial class ConfigEditorWindow : UI.FluentWindow
 {
+    private static bool IsWebView2Available()
+    {
+        try
+        {
+            Microsoft.Web.WebView2.Core.CoreWebView2Environment.GetAvailableBrowserVersionString();
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private const string WEBVIEW2_DOWNLOAD_URL = "https://developer.microsoft.com/de-de/microsoft-edge/webview2";
+
+    private static void ShowWebView2NotFoundMessage()
+    {
+        var msgContent = new StackPanel();
+        msgContent.Children.Add(new TextBlock
+        {
+            Text = Properties.Resources.Common.WebView2_NotFound,
+        });
+        msgContent.Children.Add(new UI.HyperlinkButton
+        {
+            Margin = new Thickness(0, 8, 0, 0),
+            NavigateUri = WEBVIEW2_DOWNLOAD_URL,
+            Content = WEBVIEW2_DOWNLOAD_URL,
+        });
+        UserInteraction.ShowMessage(
+            title: Properties.Resources.Common.WebView2_NotFound_Title,
+            message: msgContent,
+            symbol: InteractionSymbol.Warning,
+            showInTaskbar: true,
+            owner: Application.Current.MainWindow);
+    }
+
     public static void ShowAsDialog(string title, string filename, string schemaName)
     {
+        if (!IsWebView2Available())
+        {
+            ShowWebView2NotFoundMessage();
+            return;
+        }
         var window = new ConfigEditorWindow
         {
             Title = title,
@@ -47,7 +89,7 @@ public partial class ConfigEditorWindow : UI.FluentWindow
 
         await editor.LoadTextAsync(
             File.ReadAllText(filename, Encoding.UTF8),
-            "yaml", 
+            "yaml",
             Path.GetFileName(filename));
 
         editor.Visibility = Visibility.Visible;

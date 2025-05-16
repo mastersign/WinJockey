@@ -187,6 +187,25 @@ namespace Mastersign.WinJockey.Properties.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The WebView2 runtime is required for the internal editor, but is not installed on this system.
+        ///You can download the installer from the following link: ähnelt.
+        /// </summary>
+        public static string WebView2_NotFound {
+            get {
+                return ResourceManager.GetString("WebView2_NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die WebView2 Runtime Unavailable ähnelt.
+        /// </summary>
+        public static string WebView2_NotFound_Title {
+            get {
+                return ResourceManager.GetString("WebView2_NotFound_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die WinJockey ähnelt.
         /// </summary>
         public static string WindowTitle {

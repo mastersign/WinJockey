@@ -159,6 +159,13 @@
   <data name="Page_Settings_Title" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="WebView2_NotFound" xml:space="preserve">
+    <value>Die WebView2-Runtime wird für den integrierten Editor benötigt, ist auf dem System aber nicht installiert.
+Unter dem folgenden Link kann der Installer heruntergeladen werden:</value>
+  </data>
+  <data name="WebView2_NotFound_Title" xml:space="preserve">
+    <value>WebView2-Runtime fehlt</value>
+  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>WinJockey</value>
   </data>
